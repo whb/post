@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password: dirdos
+  username: admin
+  password: xl67752007
   host: localhost
 
 development:
