@@ -12,11 +12,11 @@ require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 set :application_name, 'post'
 set :domain, 'boe.xllg.com'
 set :deploy_to, '/var/www/post'
-set :repository, 'git://...'
+set :repository, 'git@github.com:whb/post.git'
 set :branch, 'master'
 
 # Optional settings:
-#   set :user, 'foobar'          # Username in the server to SSH to.
+set :user, 'root'          # Username in the server to SSH to.
 #   set :port, '30000'           # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
