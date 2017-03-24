@@ -49,4 +49,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # https://github.com/seyhunak/twitter-bootstrap-rails
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
+
+# https://github.com/CanCanCommunity/cancancan/wiki/Role-Based-Authorization
+gem 'cancancan'
