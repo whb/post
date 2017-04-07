@@ -10,7 +10,7 @@ require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'post'
-set :domain, 'boe.xllg.com'
+set :domain, 'post.xllg.com'
 set :deploy_to, '/var/www/post'
 set :repository, 'https://github.com/whb/post.git'
 set :branch, 'master'
