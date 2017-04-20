@@ -1,0 +1,19 @@
+<%= nav_bar fixed: :top, brand: t(".Post System"), responsive: true do %>
+  
+  <%= menu_group do %>
+    <%= menu_item t(".Home"), root_path %>
+    <%= menu_divider %>
+    <%= drop_down t(".Basic Data Admin") do %>
+      <%= menu_item t(".Organizations"), organizations_path %>
+      <%= menu_item t(".Users"), users_path %>
+    <% end %>
+  <% end %>
+
+  <%= menu_group pull: :right do %>
+    <%= drop_down t(".Document") do %>
+       <%= menu_item t(".Manual"), '/manual.pdf' %>
+       <%= menu_item t(".Work flow"), '/work_flow.pdf' %>
+    <% end %>
+  <% end %>
+
+<% end %>
