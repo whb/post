@@ -53,3 +53,5 @@ gem 'twitter-bootstrap-rails'
 
 # https://github.com/CanCanCommunity/cancancan/wiki/Role-Based-Authorization
 gem 'cancancan'
+
+gem 'simple_form'

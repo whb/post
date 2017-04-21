@@ -1,41 +1,22 @@
-<%= form_for @organization, :html => { :class => "form-horizontal organization" } do |f| %>
-
-  <% if @organization.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @organization.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
+<%= simple_form_for @organization, html: { class: 'form-horizontal' } , 
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
+  <%= f.error_notification %> 
+  <%= f.input :code %>
+  <%= f.input :name %>
+  <%= f.association :superior, collection: Organization.all %>
+  
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:name) %>
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= f.button :submit, class: 'btn-primary' %>
+    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                organizations_path, class: 'btn btn-default' %>
+  </div>           
   </div>
-  <div class="form-group">
-    <%= f.label :superior_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :superior_id, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:superior_id) %>
-  </div>
-
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                organizations_path, :class => 'btn btn-default' %>
-    </div>
-  </div>
-
 <% end %>
+
