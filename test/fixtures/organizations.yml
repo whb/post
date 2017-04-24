@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  code: 0001
   name: MyString
   superior_id: 1
 
 two:
+  code: 0002
   name: MyString
   superior_id: 1

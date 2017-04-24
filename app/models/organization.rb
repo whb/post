@@ -4,9 +4,9 @@ class Organization < ApplicationRecord
   has_many :subordinates, :class_name => "Organization", :foreign_key => "superior_id"
   belongs_to :superior, :class_name => "Organization"
   has_many :users
-  attr_accessor :code, :name, :superior_id
-  validates_uniqueness_of :code, :name
-  validates_presence_of :code, :name
+  validates :code, :name, presence: true
+  validates :code, :name, uniqueness: true
+  
 
   def self.default
     Organization.find(1)
