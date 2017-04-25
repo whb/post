@@ -3,10 +3,14 @@
   <%= menu_group do %>
     <%= menu_item t(".Home"), root_path %>
     <%= menu_divider %>
-    <%= drop_down t(".Basic Data Admin") do %>
-      <%= menu_item t(".Organizations"), organizations_path %>
-      <%= menu_item t(".Users"), users_path %>
+
+    <% if can? :manage, User %>
+      <%= drop_down t(".Basic Data Admin") do %>
+        <%= menu_item t(".Organizations"), organizations_path %>
+        <%= menu_item t(".Users"), users_path %>
+      <% end %>
     <% end %>
+
   <% end %>
 
   <%= menu_group pull: :right do %>
