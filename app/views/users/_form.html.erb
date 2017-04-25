@@ -8,27 +8,33 @@
   } do |f| %>
   <%= f.error_notification %> 
 
-    <%= f.input :username %>
-    <%= f.input :displayname %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-    <%= f.input :enabled %>
-    <%= f.association :organization, collection: Organization.all %>
+  <%= f.input :username %>
+  <%= f.input :displayname %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :enabled %>
+  <%= f.association :organization, collection: Organization.all %>
 
-  <div class="form-inline">
-    <% for role in User::ROLES %>
-    <label class="checkbox">
-      <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
-      <%= t("roles.#{role}") %>&nbsp;
-    </label>
-    <% end %>
+  <div class="form-group string user_roles">
+  <label class="col-sm-3 control-label string" for="user_roles">Roles</label>
+  <div class="col-sm-9">
+    <div class="form-inline">
+      <% for role in User::ROLES %>
+      <label class="checkbox">
+        <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+        <%= t("roles.#{role}") %>&nbsp;
+      </label>
+      <% end %>
+    </div>
+    <%= hidden_field_tag "user[roles][]", "" %>
+  </div>
   </div>
 
-  <%= hidden_field_tag "user[roles][]", "" %>
-
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
+  <div class="form-group">
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= f.button :submit, class: 'btn-primary' %>
+    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                users_path, class: 'btn btn-default' %>
+  </div>           
   </div>
 <% end %>
