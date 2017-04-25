@@ -1,9 +1,8 @@
 zh-CN:   
   roles:
     admin: 管理员
-    staff: 录入员
-    department_manager: 部长
-    vice_manager: 主管经理
-    general_manager: 总经理
+    staff: 普通员工
+    manager: 经理
+    accounting_clerk: 核结算业务员
     financial_officer: 财务审核
     banned: <禁用>
