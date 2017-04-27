@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr class="clickableRow" href="<%= user_path(user) %>">
+      <tr class="clickableRow">
         <td><%= link_to user.username, user_path(user) %></td>
         <td><%= user.displayname %></td>
         <td><%= user.enabled %></td>

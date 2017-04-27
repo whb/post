@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr class="clickableRow" href="<%= organization_path(organization) %>">
+      <tr class="clickableRow">
         <td><%= link_to organization.code, organization_path(organization) %></td>
         <td><%= organization.name %></td>
         <td><%= organization.superior_name %></td>

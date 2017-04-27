@@ -5,10 +5,11 @@
     <%= menu_divider %>
 
     <% if can? :manage, User %>
-      <%= drop_down t(".Basic Data Admin") do %>
+      
+    <% end %>
+    <%= drop_down t(".Basic Data Admin") do %>
         <%= menu_item t(".Organizations"), organizations_path %>
         <%= menu_item t(".Users"), users_path %>
-      <% end %>
     <% end %>
 
   <% end %>
