@@ -1,0 +1,102 @@
+zh-CN:
+  activerecord:
+    models:
+      expense: 
+        one: 费用申请单
+        other: 费用申请单列表
+      item: 费用项
+      detail: 费用项
+      approval: 审批签字
+      organization: 组织机构
+      user: 用户
+      category: 费用类型
+      period: 年度预算
+      budget: 预算
+      reimbursement: 支出证明单
+
+    attributes:
+      created_at: 创建时间
+      expense:
+        sn: 编号
+        request_on: 申请日期
+        staff: 申请人
+        organization: 申请部门
+        explain: 说明
+        created_at: 创建时间
+        status: 状态
+        abstract: 摘要及用途
+      reimbursement:
+        sn: 编号
+        reimburse_on: 日期
+        staff: 经办人
+        organization_id: 部门
+        organization: 部门
+        abstract: 摘要及用途
+        created_at: 创建时间
+        status: 状态
+        amount: 金额
+        chinese_amount: 金额(大写)
+        invoice_no: 发票号
+        expense_id: 费用申请单
+      item:
+        category: 分类
+        name: 名称
+        amount: 数量
+        unit: 单位
+        unit_price: 单价
+        price: 价格
+      detail:
+        category: 分类
+        name: 名称
+        amount: 数量
+        unit: 单位
+        unit_price: 单价
+        price: 价格
+      approval:
+        level: 审批级别
+        agree: 同意
+        explain: 说明
+        approve_on: 审批日期
+      organization:
+        code: 编号
+        name: 名称
+        kind: 类型
+        superior_id: 上级机构
+        superior: 上级机构
+        upper_manager: 主管经理
+      user:
+        username: 用户名
+        displayname: 姓名
+        password_digest: 密码
+        password: 密码
+        password_confirmation: 确认密码
+        enabled: 有效
+        organization_id: 所属机构
+        organization: 所属机构
+        roles: 角色
+      category:
+        code: 编号
+        name: 名称
+        superior: 上级费用类型
+      period: 
+        year: 年份
+        explain: 说明
+      budget:
+        category: 费用类型
+        amount: 金额
+        cost: 支出金额
+        available: 剩余金额
+    errors: 
+      models:
+        approval:
+          attributes:
+            explain: 
+              blank: 不同意时，请说明原因
+        expense:
+          attributes:
+            sn: 
+              taken: 已经被使用（点击输入框，生成新编号）
+        reimbursement:
+          attributes:
+            sn: 
+              taken: 已经被使用（点击输入框，生成新编号）

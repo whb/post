@@ -27,6 +27,10 @@ class User < ApplicationRecord
     !roles.empty?
   end
 
+  def organization_name
+    organization ? organization.name : ""
+  end
+
   # User.authenticate('username123', 'password123')  # returns authenticated user or nil
   def self.authenticate(username, password)
     user = User.find_by_username(username)

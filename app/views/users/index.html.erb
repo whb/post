@@ -5,27 +5,23 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:username) %></th>
       <th><%= model_class.human_attribute_name(:displayname) %></th>
-      <th><%= model_class.human_attribute_name(:password_digest) %></th>
       <th><%= model_class.human_attribute_name(:enabled) %></th>
       <th><%= model_class.human_attribute_name(:organization_id) %></th>
+      <th><%= model_class.human_attribute_name(:roles) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.id, user_path(user) %></td>
-        <td><%= user.username %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
         <td><%= user.displayname %></td>
-        <td><%= user.password_digest %></td>
         <td><%= user.enabled %></td>
-        <td><%= user.organization_id %></td>
+        <td><%= user.organization_name %></td>
+        <td><%= display user.roles %></td>
         <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      user_path(user), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_path(user), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
