@@ -7,6 +7,9 @@ class Organization < ApplicationRecord
   validates :code, :name, presence: true
   validates :code, :name, uniqueness: true
   
+  def superior_name 
+    superior ? superior.name : ""
+  end
 
   def self.default
     Organization.find(1)

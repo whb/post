@@ -25,4 +25,7 @@ $.extend( $.fn.dataTable.defaults, {
 
 $(document).ready(function(){
     $('.datatable').dataTable();
+    $(".clickableRow").click(function() {
+        window.document.location = $(this).attr("href");
+    });
 });

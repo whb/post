@@ -5,23 +5,19 @@
 <table class="table table-striped table-bordered table-hover datatable">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:code) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:superior_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to organization.id, organization_path(organization) %></td>
+      <tr class="clickableRow" href="<%= organization_path(organization) %>">
+        <td><%= link_to organization.code, organization_path(organization) %></td>
         <td><%= organization.name %></td>
-        <td><%= organization.superior_id %></td>
-        <td><%=l organization.created_at %></td>
+        <td><%= organization.superior_name %></td>
         <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      organization_path(organization), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_organization_path(organization), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
