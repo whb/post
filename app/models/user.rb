@@ -40,4 +40,8 @@ class User < ApplicationRecord
       return nil
     end
   end
+
+  def self.obtain(id)
+    return User.find(id)
+  end
 end

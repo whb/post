@@ -1,0 +1,47 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+
+<%= simple_form_for @user, url: update_self_password_user_path(@user), 
+  html: { class: 'form-horizontal' }, wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  }  do |f| %>
+  <%= f.error_notification %> 
+
+  <%= f.input :username, disabled: true %>
+  <%= f.input :displayname, disabled: true %>
+  <%= f.input :enabled, disabled: true %>
+  <%= f.association :organization, collection: Organization.all, disabled: true %>
+
+  <div class="form-group string user_roles">
+  <label class="col-sm-3 control-label string" for="user_roles">Roles</label>
+  <div class="col-sm-9">
+    <div class="form-inline">
+      <% for role in User::ROLES %>
+      <label class="checkbox">
+        <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]", disabled: true} %>
+        <%= t("roles.#{role}") %>&nbsp;
+      </label>
+      <% end %>
+    </div>
+    <%= hidden_field_tag "user[roles][]", "" %>
+  </div>
+  </div>
+
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <div class="form-group">
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= f.submit t('.update_self_password'), :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                root_path, class: 'btn btn-default' %>
+  </div>           
+  </div>
+<% end %>

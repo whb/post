@@ -9,24 +9,24 @@ class Ability
       can :show, :home 
       can [:profile, :update_self_password], User
     end
-    can :manage, [User, Category, Period, Organization] if user.is? :admin
-    if user.is? :staff
-      can [:read, :query], Income 
-      can [:read, :query], Cost
-    end
-    if user.is? :manager
-      can [:read, :query], Income 
-      can [:read, :query], Cost
-      can :report, :cost
-    end
-    if user.is? :accounting_clerk
-       can [:create, :generate_sn, :update, :destroy], Income
-      can [:create, :generate_sn, :update, :destroy], Cost
-    end
-    if user.is? :financial_officer
-      can [:list_verify, :commit, :verify], Cost
-      can :report, :cost
-    end
+    can :manage, [User, Organization] if user.is? :admin
+    # if user.is? :staff
+    #   can [:read, :query], Income 
+    #   can [:read, :query], Cost
+    # end
+    # if user.is? :manager
+    #   can [:read, :query], Income 
+    #   can [:read, :query], Cost
+    #   can :report, :cost
+    # end
+    # if user.is? :accounting_clerk
+    #    can [:create, :generate_sn, :update, :destroy], Income
+    #   can [:create, :generate_sn, :update, :destroy], Cost
+    # end
+    # if user.is? :financial_officer
+    #   can [:list_verify, :commit, :verify], Cost
+    #   can :report, :cost
+    # end
 
     #
     # The first argument to `can` is the action you are giving the user

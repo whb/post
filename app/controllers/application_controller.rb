@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # check_authorization
+  before_filter :login_required
   
   before_action :set_locale
+  
    
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
@@ -18,6 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def login_required
+    redirect_to login_url unless current_user
+  end
 
   def current_user
     @current_user ||= User.obtain(session[:user_id]) if session[:user_id]
