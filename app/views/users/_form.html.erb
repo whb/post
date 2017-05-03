@@ -1,3 +1,4 @@
+<%- model_class = User -%>
 <%= simple_form_for @user, html: { class: 'form-horizontal' } , 
   wrapper: :horizontal_form,
   wrapper_mappings: {
@@ -10,13 +11,11 @@
 
   <%= f.input :username %>
   <%= f.input :displayname %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
   <%= f.input :enabled %>
   <%= f.association :organization, collection: Organization.all %>
 
   <div class="form-group string user_roles">
-  <label class="col-sm-3 control-label string" for="user_roles">Roles</label>
+  <label class="col-sm-3 control-label string"><%=model_class.human_attribute_name(:roles)%></label>
   <div class="col-sm-9">
     <div class="form-inline">
       <% for role in User::ROLES %>
@@ -29,6 +28,9 @@
     <%= hidden_field_tag "user[roles][]", "" %>
   </div>
   </div>
+
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">

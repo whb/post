@@ -20,7 +20,7 @@
   <%= f.association :organization, collection: Organization.all, disabled: true %>
 
   <div class="form-group string user_roles">
-  <label class="col-sm-3 control-label string" for="user_roles">Roles</label>
+  <label class="col-sm-3 control-label string"><%=model_class.human_attribute_name(:roles)%></label>
   <div class="col-sm-9">
     <div class="form-inline">
       <% for role in User::ROLES %>
