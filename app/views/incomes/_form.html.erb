@@ -1,0 +1,23 @@
+<%= simple_form_for(@income) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :code %>
+    <%= f.association :payer %>
+    <%= f.input :abstract %>
+    <%= f.input :bill_date %>
+    <%= f.input :account_date %>
+    <%= f.input :income_amount %>
+    <%= f.input :settlement_amount %>
+    <%= f.input :invoice_date %>
+    <%= f.input :invoice_num %>
+    <%= f.input :tax_rate %>
+    <%= f.input :explain %>
+    <%= f.input :discount_rate %>
+    <%= f.input :available_amount %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

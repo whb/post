@@ -7,6 +7,11 @@
     <% if can? :manage, User %>
       
     <% end %>
+    
+    <%= drop_down t(".Income Cost Record") do %>
+        <%= menu_item t(".Income"), incomes_path %>
+    <% end %>
+
     <%= drop_down t(".Basic Data Admin") do %>
         <%= menu_item t(".Organizations"), organizations_path %>
         <%= menu_item t(".Users"), users_path %>

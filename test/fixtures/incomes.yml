@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  payer: one
+  abstract: MyString
+  bill_date: 2017-07-06
+  account_date: 2017-07-06
+  income_amount: 9.99
+  settlement_amount: 9.99
+  invoice_date: 2017-07-06
+  invoice_num: 1
+  tax_rate: 9.99
+  explain: MyString
+  discount_rate: 9.99
+  available_amount: 9.99
+
+two:
+  code: MyString
+  payer: two
+  abstract: MyString
+  bill_date: 2017-07-06
+  account_date: 2017-07-06
+  income_amount: 9.99
+  settlement_amount: 9.99
+  invoice_date: 2017-07-06
+  invoice_num: 1
+  tax_rate: 9.99
+  explain: MyString
+  discount_rate: 9.99
+  available_amount: 9.99

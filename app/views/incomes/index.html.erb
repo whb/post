@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Incomes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Payer</th>
+      <th>Abstract</th>
+      <th>Bill date</th>
+      <th>Account date</th>
+      <th>Income amount</th>
+      <th>Settlement amount</th>
+      <th>Invoice date</th>
+      <th>Invoice num</th>
+      <th>Tax rate</th>
+      <th>Explain</th>
+      <th>Discount rate</th>
+      <th>Available amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.code %></td>
+        <td><%= income.payer %></td>
+        <td><%= income.abstract %></td>
+        <td><%= income.bill_date %></td>
+        <td><%= income.account_date %></td>
+        <td><%= income.income_amount %></td>
+        <td><%= income.settlement_amount %></td>
+        <td><%= income.invoice_date %></td>
+        <td><%= income.invoice_num %></td>
+        <td><%= income.tax_rate %></td>
+        <td><%= income.explain %></td>
+        <td><%= income.discount_rate %></td>
+        <td><%= income.available_amount %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Destroy', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Income', new_income_path %>

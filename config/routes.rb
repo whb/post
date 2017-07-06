@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :incomes
   resources :payers
   get "home/index"
   get "logout" => "sessions#destroy", :as => "logout"

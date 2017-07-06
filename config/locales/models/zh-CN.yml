@@ -1,9 +1,9 @@
 zh-CN:
   activerecord:
     models:
-      expense: 
-        one: 费用申请单
-        other: 费用申请单列表
+      income: 
+        one: 运输收入
+        other: 运输收入列表
       item: 费用项
       detail: 费用项
       approval: 审批签字
@@ -16,15 +16,23 @@ zh-CN:
 
     attributes:
       created_at: 创建时间
-      expense:
-        sn: 编号
-        request_on: 申请日期
-        staff: 申请人
-        organization: 申请部门
+      income:
+        code: 业务编号
+        abstract: 账单摘要
+        payer: 客户名称
+        bill_date: 收到对账单时间
+        account_date: 财务记账时间
+        income_amount: 应收运费金额（元）
+        settlement_amount: 账单结算金额（元） 
+        invoice_date: 开具发票时间
+        invoice_num: 发票张数
+        tax_rate: 税率
         explain: 说明
+        discount_rate: 管理费率
+        available_amount: 可支付运费金额（元）
         created_at: 创建时间
         status: 状态
-        abstract: 摘要及用途
+
       reimbursement:
         sn: 编号
         reimburse_on: 日期

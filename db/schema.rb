@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527062343) do
+ActiveRecord::Schema.define(version: 20170706022906) do
+
+  create_table "incomes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "code"
+    t.integer  "payer_id"
+    t.string   "abstract"
+    t.date     "bill_date"
+    t.date     "account_date"
+    t.decimal  "income_amount",     precision: 10, scale: 2
+    t.decimal  "settlement_amount", precision: 10, scale: 2
+    t.date     "invoice_date"
+    t.integer  "invoice_num"
+    t.decimal  "tax_rate",          precision: 2
+    t.string   "explain"
+    t.decimal  "discount_rate",     precision: 2
+    t.decimal  "available_amount",  precision: 10, scale: 2
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["code"], name: "index_incomes_on_code", using: :btree
+    t.index ["payer_id"], name: "index_incomes_on_payer_id", using: :btree
+  end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -40,4 +60,5 @@ ActiveRecord::Schema.define(version: 20170527062343) do
     t.integer  "roles_mask"
   end
 
+  add_foreign_key "incomes", "payers"
 end

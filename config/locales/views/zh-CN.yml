@@ -5,19 +5,7 @@ zh-CN:
     menu_bar:
       Post System: 祥龙物流邮政项目结算系统
       Home: 首页
-      Expenses: 费用申请
-      Expense request/commit: 费用申请
-      Expense approval: 费用审批
-      Expense query: 费用查询
-      Reimbursement: 报销
-      Reimbursement create: 填写支出证明
-      Reimbursement commit: 审核支出证明
-      Reimbursement query: 查询支出证明
-      Statistics report: 统计报表
-      Current budget: 预算使用情况
-      Organizations cost: 部门全年费用支出
-      Organization cost: 部门按月费用支出
-      Category cost: 费用类型按月费用支出
+      Income Cost Record: 收入费用账单记录
       Basic Data Admin: 基础数据管理
       Organizations: 组织机构
       Users: 用户列表
@@ -71,11 +59,11 @@ zh-CN:
       balance: 剩余预算
     expense_action:
       build: 生成支出证明
-  expenses:
+  incomes:
     index:
-      title: 未完成费用申请单列表
+      title: 未完结运输收入列表
     query:
-      title: 查询费用申请单
+      title: 查询运输收入
     form:
       add: 添加费用项
     expenses_datatable:
@@ -90,15 +78,15 @@ zh-CN:
   reimbursements:
     index:
       title: 未完成支出证明列表
-      expense_id: 费用申请单
+      expense_id: 运输收入
     query:
       title: 查询支出证明  
     navs:
       edit: 编辑
-      new_from_expense: 费用申请单生成
+      new_from_expense: 运输收入生成
       new: 新建空白
     query_expenses:
-      title: 费用申请单列表
+      title: 运输收入列表
       toggle reimbursed expenses: 显示/隐藏
     list_verify:
       title: 待审核支出证明列表
@@ -112,9 +100,9 @@ zh-CN:
       print_remind_page_adapt: 打印界面  ：  “不”选  “适合页面大小”
   approvals:
     index:
-      title: 待审批费用申请单列表
+      title: 待审批运输收入列表
     new:
-      title: 审批费用申请单
+      title: 审批运输收入
     form:
       approve: 确认审批
     agree:
@@ -166,9 +154,9 @@ zh-CN:
       title: 祥龙物流费用支出系统
       welcome: 欢迎使用祥龙物流费用支出系统
 
-  Expense was successfully created: 费用申请单保存成功
-  Expense was successfully updated: 费用申请单更新成功
-  Expense was successfully committed: 费用申请单提交成功
+  Expense was successfully created: 运输收入保存成功
+  Expense was successfully updated: 运输收入更新成功
+  Expense was successfully committed: 运输收入提交成功
   Approval was successfully created: 完成审批
   Approval was successfully updated: 更新审批
   Organization was successfully created: 组织机构保存成功

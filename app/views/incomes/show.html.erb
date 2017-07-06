@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @income.code %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @income.payer %>
+</p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @income.abstract %>
+</p>
+
+<p>
+  <strong>Bill date:</strong>
+  <%= @income.bill_date %>
+</p>
+
+<p>
+  <strong>Account date:</strong>
+  <%= @income.account_date %>
+</p>
+
+<p>
+  <strong>Income amount:</strong>
+  <%= @income.income_amount %>
+</p>
+
+<p>
+  <strong>Settlement amount:</strong>
+  <%= @income.settlement_amount %>
+</p>
+
+<p>
+  <strong>Invoice date:</strong>
+  <%= @income.invoice_date %>
+</p>
+
+<p>
+  <strong>Invoice num:</strong>
+  <%= @income.invoice_num %>
+</p>
+
+<p>
+  <strong>Tax rate:</strong>
+  <%= @income.tax_rate %>
+</p>
+
+<p>
+  <strong>Explain:</strong>
+  <%= @income.explain %>
+</p>
+
+<p>
+  <strong>Discount rate:</strong>
+  <%= @income.discount_rate %>
+</p>
+
+<p>
+  <strong>Available amount:</strong>
+  <%= @income.available_amount %>
+</p>
+
+<%= link_to 'Edit', edit_income_path(@income) %> |
+<%= link_to 'Back', incomes_path %>
