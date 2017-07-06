@@ -5,12 +5,12 @@ zh-CN:
     menu_bar:
       Post System: 祥龙物流邮政项目结算系统
       Home: 首页
-      Income Cost Record: 收入费用账单记录
+      Income Cost Record: 账单记录
+      Incomes: 收入账单记录
       Basic Data Admin: 基础数据管理
       Organizations: 组织机构
       Users: 用户列表
-      Categories: 费用类型
-      Periods: 年度预算
+      Payers: 客户
       Log Out: 退出
       Document: 手册
       Manual: 操作手册
@@ -51,14 +51,6 @@ zh-CN:
     select:
       prompt: 请选择
 
-  shared:
-    budgets_sidebar:
-      category: 费用类型
-      available: 可用预算
-      current: 本次金额
-      balance: 剩余预算
-    expense_action:
-      build: 生成支出证明
   incomes:
     index:
       title: 未完结运输收入列表
@@ -75,70 +67,15 @@ zh-CN:
       general_manager_approval: 总经理批准
       reimbursed: 已报销
       invalid: 作废
-  reimbursements:
+  payers:
     index:
-      title: 未完成支出证明列表
-      expense_id: 运输收入
-    query:
-      title: 查询支出证明  
-    navs:
-      edit: 编辑
-      new_from_expense: 运输收入生成
-      new: 新建空白
-    query_expenses:
-      title: 运输收入列表
-      toggle reimbursed expenses: 显示/隐藏
-    list_verify:
-      title: 待审核支出证明列表
-    STATUS_TYPES: 
-      edit: 报销中
-      commit: 已报销
-    show:
-      print_remind_title: 打印提示
-      print_remind_page_size: 支出凭证纸张大小设置： 10.5cm X 19.0cm
-      print_remind_page_orientation: 支出凭证进纸方向  ：  “科目”朝外放置
-      print_remind_page_adapt: 打印界面  ：  “不”选  “适合页面大小”
-  approvals:
-    index:
-      title: 待审批运输收入列表
-    new:
-      title: 审批运输收入
-    form:
-      approve: 确认审批
-    agree:
-      'true': 同意
-      'false': 不同意
-    LEVEL_TYPES: 
-      manager_approval: 主管经理审批
-      general_manager_approval: 总经理审批
-  cost_report:
-    summary: 合计
-    month_title: ' / 月份'
-    organization_months:
-      title: 各部门按月费用统计
-    category_months:
-      title: 各类型按月费用统计
-    organizations_cost:
-      title: 各部门全年费用支出
-      table_annotate: 分类 / 部门
-    organization_cost:
-      title: 按月费用支出
-      table_annotate: 分类 / 月份
-    category_cost:
-      title: 费用支出
-      table_annotate: 部门 / 月份
+        title: 客户列表
 
   organizations:
     index:
       title: 组织机构列表
     KIND_TYPES: 
       department: 部门
-  periods:
-    index:
-        title: 年度预算列表
-  categories:
-    index:
-        title: 费用类型列表
   users:
     index:
       title: 用户列表
@@ -154,22 +91,15 @@ zh-CN:
       title: 祥龙物流费用支出系统
       welcome: 欢迎使用祥龙物流费用支出系统
 
-  Expense was successfully created: 运输收入保存成功
-  Expense was successfully updated: 运输收入更新成功
-  Expense was successfully committed: 运输收入提交成功
-  Approval was successfully created: 完成审批
-  Approval was successfully updated: 更新审批
+  Income was successfully created: 运输收入保存成功
+  Income was successfully updated: 运输收入更新成功
+  Income was successfully committed: 运输收入提交成功
+  Payer was successfully created: 客户保存成功
+  Payer was successfully updated: 客户更新成功
   Organization was successfully created: 组织机构保存成功
   Organization was successfully updated: 组织机构更新成功
-  Category was successfully created: 费用类型保存成功
-  Category was successfully updated: 费用类型更新成功
-  Period was successfully created: 年度预算保存成功
-  Period was successfully updated: 年度预算更新成功
   User was successfully created: 用户保存成功
   User was successfully updated: 用户更新成功
-  Reimbursement was successfully created: 支出证明单保存成功
-  Reimbursement was successfully updated: 支出证明单更新成功
-  Reimbursement was successfully committed: 支出证明单提交成功
   Log in: 登录
   Logged in!: 登录成功!
   Invalid username or password: 无效的用户名和密码
@@ -178,7 +108,5 @@ zh-CN:
   All Organizations: 所有部门
   Whole Year: 全年
   month: 月
-  Cost Details: 费用明细
-  Reimbursement List: 支出证明单列表
   Select Organization: 选择部门...
   Select Category: 选择分类...

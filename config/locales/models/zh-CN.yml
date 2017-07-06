@@ -4,15 +4,9 @@ zh-CN:
       income: 
         one: 运输收入
         other: 运输收入列表
-      item: 费用项
-      detail: 费用项
-      approval: 审批签字
+      payer: 客户
       organization: 组织机构
       user: 用户
-      category: 费用类型
-      period: 年度预算
-      budget: 预算
-      reimbursement: 支出证明单
 
     attributes:
       created_at: 创建时间
@@ -32,39 +26,12 @@ zh-CN:
         available_amount: 可支付运费金额（元）
         created_at: 创建时间
         status: 状态
-
-      reimbursement:
-        sn: 编号
-        reimburse_on: 日期
-        staff: 经办人
-        organization_id: 部门
-        organization: 部门
-        abstract: 摘要及用途
-        created_at: 创建时间
+      payer:
+        code: 编号
+        name: 名称
+        brief_name: 简称
         status: 状态
-        amount: 金额
-        chinese_amount: 金额(大写)
-        invoice_no: 发票号
-        expense_id: 费用申请单
-      item:
-        category: 分类
-        name: 名称
-        amount: 数量
-        unit: 单位
-        unit_price: 单价
-        price: 价格
-      detail:
-        category: 分类
-        name: 名称
-        amount: 数量
-        unit: 单位
-        unit_price: 单价
-        price: 价格
-      approval:
-        level: 审批级别
-        agree: 同意
-        explain: 说明
-        approve_on: 审批日期
+
       organization:
         code: 编号
         name: 名称
@@ -82,10 +49,7 @@ zh-CN:
         organization_id: 所属机构
         organization: 所属机构
         roles: 角色
-      category:
-        code: 编号
-        name: 名称
-        superior: 上级费用类型
+
       period: 
         year: 年份
         explain: 说明
