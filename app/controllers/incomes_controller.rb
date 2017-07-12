@@ -14,7 +14,7 @@ class IncomesController < ApplicationController
 
   # GET /incomes/new
   def new
-    @income = Income.new
+    @income = Income.new_blank
   end
 
   # GET /incomes/1/edit
