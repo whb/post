@@ -20,8 +20,8 @@
   <%= f.input :invoice_num %>
   <%= f.input :tax_rate %>
   <%= f.input :explain %>
-  <%= f.input :discount_rate, as: :percent %>
-  <%= f.input :available_amount, as: :currency %>
+  <%= f.input :discount_rate, as: :percent, input_html: {readonly: true} %>
+  <%= f.input :available_amount, as: :currency, input_html: {readonly: true} %>
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">
@@ -31,3 +31,12 @@
   </div>           
   </div>
 <% end %>
+
+<script type="text/javascript">
+$("#income_income_amount").change(function() {
+  amount = $("#income_income_amount").val();
+  available_amount = amount - (amount / 100 * $("#income_discount_rate").val());
+  $("#income_settlement_amount").val(amount);
+  $("#income_available_amount").val(available_amount);
+});
+</script>

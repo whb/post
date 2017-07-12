@@ -1,69 +1,47 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Income -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Code:</strong>
-  <%= @income.code %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
+  <dd><%= @income.code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payer) %>:</strong></dt>
+  <dd><%= @income.payer.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:abstract) %>:</strong></dt>
+  <dd><%= @income.abstract %></dd>
 
-<p>
-  <strong>Payer:</strong>
-  <%= @income.payer %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:bill_date) %>:</strong></dt>
+  <dd><%= @income.bill_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:account_date) %>:</strong></dt>
+  <dd><%= @income.account_date %></dd>
 
-<p>
-  <strong>Abstract:</strong>
-  <%= @income.abstract %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:income_amount) %>:</strong></dt>
+  <dd>￥<%= @income.income_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:settlement_amount) %>:</strong></dt>
+  <dd>￥<%= @income.settlement_amount %></dd>
 
-<p>
-  <strong>Bill date:</strong>
-  <%= @income.bill_date %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:invoice_date) %>:</strong></dt>
+  <dd><%= @income.invoice_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:invoice_num) %>:</strong></dt>
+  <dd><%= @income.invoice_num %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tax_rate) %>:</strong></dt>
+  <dd><%= @income.tax_rate %></dd>
 
-<p>
-  <strong>Account date:</strong>
-  <%= @income.account_date %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:explain) %>:</strong></dt>
+  <dd><%= @income.explain %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discount_rate) %>:</strong></dt>
+  <dd><%= @income.discount_rate %>%</dd>
+  <dt><strong><%= model_class.human_attribute_name(:available_amount) %>:</strong></dt>
+  <dd>￥<%= @income.available_amount %></dd>
+</dl>
 
-<p>
-  <strong>Income amount:</strong>
-  <%= @income.income_amount %>
-</p>
-
-<p>
-  <strong>Settlement amount:</strong>
-  <%= @income.settlement_amount %>
-</p>
-
-<p>
-  <strong>Invoice date:</strong>
-  <%= @income.invoice_date %>
-</p>
-
-<p>
-  <strong>Invoice num:</strong>
-  <%= @income.invoice_num %>
-</p>
-
-<p>
-  <strong>Tax rate:</strong>
-  <%= @income.tax_rate %>
-</p>
-
-<p>
-  <strong>Explain:</strong>
-  <%= @income.explain %>
-</p>
-
-<p>
-  <strong>Discount rate:</strong>
-  <%= @income.discount_rate %>
-</p>
-
-<p>
-  <strong>Available amount:</strong>
-  <%= @income.available_amount %>
-</p>
-
-<%= link_to 'Edit', edit_income_path(@income) %> |
-<%= link_to 'Back', incomes_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              incomes_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_income_path(@income), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              income_path(@income),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
