@@ -15,5 +15,10 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 // require turbolinks
 //= require_tree .
+
+$(document).on("page:load ready", function(){
+    $("input.datepicker").datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true, "language": "zh-CN"});
+});

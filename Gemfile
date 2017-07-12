@@ -60,3 +60,6 @@ gem 'cancancan'
 gem 'simple_form'
 
 gem 'jquery-datatables-rails', '~> 3.4.0'
+
+# https://github.com/Nerian/bootstrap-datepicker-rails
+gem 'bootstrap-datepicker-rails'

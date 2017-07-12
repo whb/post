@@ -1,23 +1,33 @@
-<%= simple_form_for(@income) do |f| %>
-  <%= f.error_notification %>
+<%- model_class = Income -%>
+<%= simple_form_for @income, html: { class: 'form-horizontal' } , 
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
+  <%= f.error_notification %> 
 
-  <div class="form-inputs">
-    <%= f.input :code %>
-    <%= f.association :payer %>
-    <%= f.input :abstract %>
-    <%= f.input :bill_date %>
-    <%= f.input :account_date %>
-    <%= f.input :income_amount %>
-    <%= f.input :settlement_amount %>
-    <%= f.input :invoice_date %>
-    <%= f.input :invoice_num %>
-    <%= f.input :tax_rate %>
-    <%= f.input :explain %>
-    <%= f.input :discount_rate %>
-    <%= f.input :available_amount %>
-  </div>
+  <%= f.input :code %>
+  <%= f.association :payer %>
+  <%= f.input :abstract %>
+  <%= f.input :bill_date, as: :string, input_html: { class: 'datepicker' } %>
+  <%= f.input :account_date, as: :string, input_html: { class: 'datepicker' }  %>
+  <%= f.input :income_amount %>
+  <%= f.input :settlement_amount %>
+  <%= f.input :invoice_date, as: :string, input_html: { class: 'datepicker' }  %>
+  <%= f.input :invoice_num %>
+  <%= f.input :tax_rate %>
+  <%= f.input :explain %>
+  <%= f.input :discount_rate %>
+  <%= f.input :available_amount %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-group">
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= f.button :submit, class: 'btn-primary' %>
+    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                incomes_path, class: 'btn btn-default' %>
+  </div>           
   </div>
 <% end %>

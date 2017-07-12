@@ -24,8 +24,7 @@
   <tbody>
     <% @incomes.each do |income| %>
       <tr class="clickableRow">
-        <td><%= link_to income.incomename, income_path(income) %></td>
-        <td><%= income.code %></td>
+        <td><%= link_to income.code, income_path(income) %></td>
         <td><%= income.payer %></td>
         <td><%= income.abstract %></td>
         <td><%= income.bill_date %></td>
