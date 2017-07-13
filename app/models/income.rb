@@ -1,5 +1,6 @@
 class Income < ApplicationRecord
   DISCOUNT_RATE = 1
+  TAX_RATE = ["6%", "11%"]
   belongs_to :payer
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code

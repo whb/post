@@ -21,7 +21,7 @@ zh-CN:
         invoice_date: 开具发票时间
         invoice_num: 发票张数
         tax_rate: 税率
-        explain: 说明
+        explain: 备注
         discount_rate: 管理费率
         available_amount: 可支付运费金额
         created_at: 创建时间

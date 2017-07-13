@@ -62,4 +62,8 @@ gem 'simple_form'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 
 # https://github.com/Nerian/bootstrap-datepicker-rails
-gem 'bootstrap-datepicker-rails'
+# gem 'bootstrap-datepicker-rails'
+
+# https://github.com/TrevorS/bootstrap3-datetimepicker-rails
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
