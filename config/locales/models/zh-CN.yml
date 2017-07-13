@@ -16,14 +16,14 @@ zh-CN:
         payer: 客户名称
         bill_date: 收到对账单时间
         account_date: 财务记账时间
-        income_amount: 应收运费金额（元）
-        settlement_amount: 账单结算金额（元） 
+        income_amount: 应收运费金额
+        settlement_amount: 账单结算金额
         invoice_date: 开具发票时间
         invoice_num: 发票张数
         tax_rate: 税率
         explain: 说明
         discount_rate: 管理费率
-        available_amount: 可支付运费金额（元）
+        available_amount: 可支付运费金额
         created_at: 创建时间
         status: 状态
       payer:

@@ -9,19 +9,27 @@
   } do |f| %>
   <%= f.error_notification %> 
 
-  <%= f.input :code %>
-  <%= f.association :payer %>
-  <%= f.input :abstract %>
-  <%= f.input :bill_date, as: :string, input_html: { class: 'datepicker' } %>
-  <%= f.input :account_date, as: :string, input_html: { class: 'datepicker' }  %>
-  <%= f.input :income_amount, as: :currency %>
-  <%= f.input :settlement_amount, as: :currency %>
-  <%= f.input :invoice_date, as: :string, input_html: { class: 'datepicker' }  %>
-  <%= f.input :invoice_num %>
-  <%= f.input :tax_rate %>
-  <%= f.input :explain %>
-  <%= f.input :discount_rate, as: :percent, input_html: {readonly: true} %>
-  <%= f.input :available_amount, as: :currency, input_html: {readonly: true} %>
+  <div class="row">
+    <div class="col-md-6">
+    <%= f.input :code %>
+    <%= f.association :payer %>
+    <%= f.input :abstract %>
+    <%= f.input :bill_date, as: :string, input_html: { class: 'datepicker' } %>
+    <%= f.input :account_date, as: :string, input_html: { class: 'datepicker' }  %>
+    <%= f.input :income_amount, as: :currency %>
+    <%= f.input :settlement_amount, as: :currency %>
+    </div>
+    <div class="col-md-6">
+    <%= f.input :invoice_date, as: :string, input_html: { class: 'datepicker' }  %>
+    <%= f.input :invoice_num %>
+    <%= f.input :tax_rate %>
+    <%= f.input :explain %>
+    <%= f.input :discount_rate, as: :percent, input_html: {readonly: true} %>
+    <%= f.input :available_amount, as: :currency, input_html: {readonly: true} %> 
+    </div>
+  </div>
+  
+  
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">

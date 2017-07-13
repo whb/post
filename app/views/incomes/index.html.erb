@@ -16,8 +16,6 @@
       <th><%= model_class.human_attribute_name(:invoice_num) %></th>
       <th><%= model_class.human_attribute_name(:tax_rate) %></th>
       <th><%= model_class.human_attribute_name(:explain) %></th>
-      <th><%= model_class.human_attribute_name(:discount_rate) %></th>
-      <th><%= model_class.human_attribute_name(:available_amount) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -35,8 +33,6 @@
         <td><%= income.invoice_num %></td>
         <td><%= income.tax_rate %></td>
         <td><%= income.explain %></td>
-        <td><%= income.discount_rate %></td>
-        <td><%= income.available_amount %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_income_path(income), :class => 'btn btn-default btn-xs' %>
