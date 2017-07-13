@@ -14,16 +14,18 @@ zh-CN:
         code: 业务编号
         abstract: 账单摘要
         payer: 客户名称
-        bill_date: 收到对账单时间
-        account_date: 财务记账时间
-        income_amount: 应收运费金额
-        settlement_amount: 账单结算金额
-        invoice_date: 开具发票时间
+        bill_date: 账单日期
+        account_date: 记账日期
+        income_amount: 应收金额
+        settlement_amount: 结算金额
+        invoice_date: 开具发票日期
         invoice_num: 发票张数
         tax_rate: 税率
         explain: 备注
         discount_rate: 管理费率
         available_amount: 可支付运费金额
+        actual_date: 实收日期
+        actual_amount: 实收金额
         created_at: 创建时间
         status: 状态
       payer:

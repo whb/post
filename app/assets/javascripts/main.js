@@ -28,4 +28,5 @@ $(document).ready(function(){
     $(".clickableRow").click(function() {
         window.document.location = $(this).find("a").first().attr("href");
     });
+    $('.well').find('input, textarea, select').attr('disabled','true');
 });
