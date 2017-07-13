@@ -16,15 +16,22 @@
     <%= f.input :abstract %>
     <%= f.input :bill_date, as: :datepicker %>
     <%= f.input :account_date, as: :datepicker  %>
-    <%= f.input :income_amount, as: :currency %>
-    <%= f.input :settlement_amount, as: :currency %>
     </div>
     <div class="col-md-6">
+    <%= f.input :income_amount, as: :currency %>
+    <%= f.input :settlement_amount, as: :currency %>
     <%= f.input :invoice_date, as: :datepicker  %>
     <%= f.input :invoice_num %>
     <%= f.input :tax_rate, collection: Income::TAX_RATE %>
     <%= f.input :explain %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
     <%= f.input :discount_rate, as: :percent, input_html: {readonly: true} %>
+    </div>
+    <div class="col-md-6">
     <%= f.input :available_amount, as: :currency, input_html: {readonly: true} %> 
     </div>
   </div>
