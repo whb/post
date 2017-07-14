@@ -28,7 +28,7 @@ class PayeesController < ApplicationController
 
     respond_to do |format|
       if @payee.save
-        format.html { redirect_to @payee, notice: 'Payee was successfully created.' }
+        format.html { redirect_to @payee, notice: t('Payee was successfully created.') }
         format.json { render :show, status: :created, location: @payee }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PayeesController < ApplicationController
   def update
     respond_to do |format|
       if @payee.update(payee_params)
-        format.html { redirect_to @payee, notice: 'Payee was successfully updated.' }
+        format.html { redirect_to @payee, notice: t('Payee was successfully updated.') }
         format.json { render :show, status: :ok, location: @payee }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PayeesController < ApplicationController
   def destroy
     @payee.destroy
     respond_to do |format|
-      format.html { redirect_to payees_url, notice: 'Payee was successfully destroyed.' }
+      format.html { redirect_to payees_url, notice: t('Payee was successfully destroyed.') }
       format.json { head :no_content }
     end
   end
