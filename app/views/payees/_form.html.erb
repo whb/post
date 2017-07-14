@@ -1,0 +1,26 @@
+<%- model_class = Payee -%>
+<%= simple_form_for @payee, html: { class: 'form-horizontal' } , 
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
+  <%= f.error_notification %> 
+
+  <div class="form-inputs">
+    <%= f.input :code %>
+    <%= f.input :name %>
+    <%= f.input :brief_name %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= f.button :submit, class: 'btn-primary' %>
+    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                payees_path, class: 'btn btn-default' %>
+  </div>           
+  </div>
+<% end %>

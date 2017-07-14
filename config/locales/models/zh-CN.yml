@@ -5,6 +5,7 @@ zh-CN:
         one: 运输收入
         other: 运输收入列表
       payer: 客户
+      payee: 承运商
       organization: 组织机构
       user: 用户
 
@@ -29,6 +30,11 @@ zh-CN:
         created_at: 创建时间
         status: 状态
       payer:
+        code: 编号
+        name: 名称
+        brief_name: 简称
+        status: 状态
+      payee:
         code: 编号
         name: 名称
         brief_name: 简称

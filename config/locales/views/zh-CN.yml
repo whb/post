@@ -11,6 +11,7 @@ zh-CN:
       Organizations: 组织机构
       Users: 用户列表
       Payers: 客户
+      Payees: 承运商
       Log Out: 退出
       Document: 手册
       Manual: 操作手册
@@ -70,6 +71,9 @@ zh-CN:
   payers:
     index:
         title: 客户列表
+  payees:
+    index:
+        title: 承运商列表
 
   organizations:
     index:
@@ -96,6 +100,8 @@ zh-CN:
   Income was successfully committed: 运输收入提交成功
   Payer was successfully created: 客户保存成功
   Payer was successfully updated: 客户更新成功
+  Payee was successfully created: 承运商保存成功
+  Payee was successfully updated: 承运商更新成功
   Organization was successfully created: 组织机构保存成功
   Organization was successfully updated: 组织机构更新成功
   User was successfully created: 用户保存成功
