@@ -1,45 +1,44 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Costs</h1>
-
-<table>
+<%- model_class = Cost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped table-bordered table-hover datatable">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Payee</th>
-      <th>Income</th>
-      <th>Abstract</th>
-      <th>Invoice date</th>
-      <th>Tax rate</th>
-      <th>Invoice amount</th>
-      <th>Cost date</th>
-      <th>Cost amount</th>
-      <th>Explain</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:sn) %></th>
+      <th><%= model_class.human_attribute_name(:payee) %></th>
+      <th><%= model_class.human_attribute_name(:income) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_date) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_amount) %></th>
+      <th><%= model_class.human_attribute_name(:cost_date) %></th>
+      <th><%= model_class.human_attribute_name(:cost_amount) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @costs.each do |cost| %>
-      <tr>
-        <td><%= cost.no %></td>
-        <td><%= cost.payee %></td>
-        <td><%= cost.income %></td>
-        <td><%= cost.abstract %></td>
+      <tr class="clickableRow">
+        <td><%= link_to cost.sn, cost_path(cost.sn) %></td>
+        <td><%= cost.payee.brief_name %></td>
+        <td><%= cost.income.code %></td>
         <td><%= cost.invoice_date %></td>
-        <td><%= cost.tax_rate %></td>
         <td><%= cost.invoice_amount %></td>
         <td><%= cost.cost_date %></td>
         <td><%= cost.cost_amount %></td>
-        <td><%= cost.explain %></td>
-        <td><%= link_to 'Show', cost %></td>
-        <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
-        <td><%= link_to 'Destroy', cost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_cost_path(cost), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      cost_path(cost),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Cost', new_cost_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_cost_path,
+            :class => 'btn btn-primary' %>

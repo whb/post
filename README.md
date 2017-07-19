@@ -40,4 +40,6 @@ rails generate scaffold income code:index:uniq payer:references abstract bill_da
 rails generate scaffold payee code:index name brief_name status:integer
 
 rails generate scaffold cost no:index payee:references income:references abstract invoice_date:date 'tax_rate:decimal{2,0}' 'invoice_amount:decimal{10,2}' cost_date:date 'cost_amount:decimal{10,2}' explain
+
+rails generate migration RenameNoColumnName
 ```

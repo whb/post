@@ -6,7 +6,8 @@ zh-CN:
       Post System: 祥龙物流邮政项目结算系统
       Home: 首页
       Income Cost Record: 账单记录
-      Incomes: 收入账单记录
+      Incomes Record: 收入账单记录
+      Costs Record: 支出账单记录
       Basic Data Admin: 基础数据管理
       Organizations: 组织机构
       Users: 用户列表
@@ -71,6 +72,9 @@ zh-CN:
       general_manager_approval: 总经理批准
       reimbursed: 已报销
       invalid: 作废
+  costs:
+    index:
+      title: 运输支出列表
   payers:
     index:
         title: 客户列表

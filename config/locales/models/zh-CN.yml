@@ -29,6 +29,19 @@ zh-CN:
         actual_amount: 实收金额
         created_at: 创建时间
         status: 状态
+      cost:
+        sn: 单据编号
+        abstract: 账单摘要
+        payee: 承运商名称
+        income: 业务编号
+        invoice_date: 收到发票日期
+        invoice_amount: 发票金额
+        tax_rate: 税率
+        explain: 备注
+        cost_date: 支付日期
+        cost_amount: 支付金额
+        created_at: 创建时间
+        status: 状态
       payer:
         code: 编号
         name: 名称

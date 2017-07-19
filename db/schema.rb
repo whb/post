@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719005014) do
+ActiveRecord::Schema.define(version: 20170719080926) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "no"
+    t.string   "sn"
     t.integer  "payee_id"
     t.integer  "income_id"
     t.string   "abstract"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170719005014) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.index ["income_id"], name: "index_costs_on_income_id", using: :btree
-    t.index ["no"], name: "index_costs_on_no", using: :btree
     t.index ["payee_id"], name: "index_costs_on_payee_id", using: :btree
+    t.index ["sn"], name: "index_costs_on_sn", using: :btree
   end
 
   create_table "incomes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

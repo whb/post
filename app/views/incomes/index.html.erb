@@ -11,8 +11,8 @@
       <th><%= model_class.human_attribute_name(:income_amount) %></th>
       <th><%= model_class.human_attribute_name(:invoice_date) %></th>
       <th><%= model_class.human_attribute_name(:tax_rate) %></th>
-       <th><%= model_class.human_attribute_name(:actual_date) %></th>
-        <th><%= model_class.human_attribute_name(:actual_amount) %></th>
+      <th><%= model_class.human_attribute_name(:actual_date) %></th>
+      <th><%= model_class.human_attribute_name(:actual_amount) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -25,8 +25,8 @@
         <td><%= income.income_amount %></td>
         <td><%= income.invoice_date %></td>
         <td><%= income.tax_rate %></td>
-         <td><%= income.actual_date %></td>
-          <td><%= income.actual_amount %></td>
+        <td><%= income.actual_date %></td>
+        <td><%= income.actual_amount %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_income_path(income), :class => 'btn btn-default btn-xs' %>
