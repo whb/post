@@ -1,5 +1,5 @@
 class IncomesController < ApplicationController
-  before_action :set_income, only: [:show, :edit, :update, :destroy]
+  before_action :set_income, only: [:show, :edit, :update, :destroy, :pay]
 
   # GET /incomes
   # GET /incomes.json
@@ -59,6 +59,11 @@ class IncomesController < ApplicationController
       format.html { redirect_to incomes_url, notice: t('Income was successfully destroyed.') }
       format.json { head :no_content }
     end
+  end
+
+  # GET /incomes/1/pay
+  def pay
+    @cost = Cost.new
   end
 
   private

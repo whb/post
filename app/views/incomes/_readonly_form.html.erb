@@ -1,0 +1,49 @@
+<%- model_class = Income -%>
+<div class="well">
+<%= simple_form_for @income, html: { class: 'form-horizontal' } , 
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
+  <%= f.error_notification %> 
+
+  <div class="row">
+    <div class="col-md-6">
+    <%= f.input :code %>
+    <%= f.association :payer %>
+    <%= f.input :abstract %>
+    <%= f.input :bill_date, as: :datepicker %>
+    <%= f.input :account_date, as: :datepicker  %>
+    </div>
+    <div class="col-md-6">
+    <%= f.input :income_amount, as: :currency %>
+    <%= f.input :settlement_amount, as: :currency %>
+    <%= f.input :invoice_date, as: :datepicker  %>
+    <%= f.input :invoice_num %>
+    <%= f.input :tax_rate, collection: Income::TAX_RATE %>
+    <%= f.input :explain %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+    <%= f.input :actual_date, as: :datepicker %>
+    </div>
+    <div class="col-md-6">
+    <%= f.input :actual_amount, as: :currency %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$("#income_income_amount").change(function() {
+  amount = $("#income_income_amount").val();
+  available_amount = amount - (amount / 100 * $("#income_discount_rate").val());
+  $("#income_settlement_amount").val(amount);
+  $("#income_available_amount").val(available_amount);
+});
+</script>

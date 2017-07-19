@@ -3,43 +3,8 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<%= simple_form_for @income, html: { class: 'form-horizontal well' } , 
-  wrapper: :horizontal_form,
-  wrapper_mappings: {
-    check_boxes: :horizontal_radio_and_checkboxes,
-    radio_buttons: :horizontal_radio_and_checkboxes,
-    file: :horizontal_file_input,
-    boolean: :horizontal_boolean
-  } do |f| %>
-  <%= f.error_notification %> 
 
-  <div class="row">
-    <div class="col-md-6">
-    <%= f.input :code %>
-    <%= f.association :payer %>
-    <%= f.input :abstract %>
-    <%= f.input :bill_date, as: :datepicker %>
-    <%= f.input :account_date, as: :datepicker  %>
-    </div>
-    <div class="col-md-6">
-    <%= f.input :income_amount, as: :currency %>
-    <%= f.input :settlement_amount, as: :currency %>
-    <%= f.input :invoice_date, as: :datepicker  %>
-    <%= f.input :invoice_num %>
-    <%= f.input :tax_rate, collection: Income::TAX_RATE %>
-    <%= f.input :explain %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-    <%= f.input :actual_date, as: :datepicker %>
-    </div>
-    <div class="col-md-6">
-    <%= f.input :actual_amount, as: :currency %>
-    </div>
-  </div>
-<% end %>
+<%= render 'readonly_form', income: @income %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               incomes_path, :class => 'btn btn-default'  %>
@@ -50,5 +15,3 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
-
-

@@ -27,6 +27,7 @@ zh-CN:
       update: 更新%{model}
       commit: 提交%{model}
       approve: 审批%{model}
+      pay: 支付%{model}
     links:
       edit: 编辑
       verify: 确认
@@ -43,10 +44,12 @@ zh-CN:
       print_left: 居左打印
       print_right: 居右打印
       close: 关闭
+      pay: 支付
     titles:
       edit: 编辑「%{model}」
       destroy: 删除「%{model}」
       new: 新建「%{model}」
+      pay: 支付「%{model}」
     values:
       none: <无>
     select:

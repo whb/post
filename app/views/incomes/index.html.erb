@@ -30,6 +30,8 @@
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_income_path(income), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.pay', :default => t("helpers.links.pay")),
+                      pay_income_path(income), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       income_path(income),
                       :method => :delete,

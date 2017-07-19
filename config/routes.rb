@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :costs
   resources :payees
-  resources :incomes
+  resources :incomes do
+    get :pay, :on => :member
+  end
   resources :payers
   get "home/index"
   get "logout" => "sessions#destroy", :as => "logout"
