@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>No:</strong>
+  <%= @cost.no %>
+</p>
+
+<p>
+  <strong>Payee:</strong>
+  <%= @cost.payee %>
+</p>
+
+<p>
+  <strong>Income:</strong>
+  <%= @cost.income %>
+</p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @cost.abstract %>
+</p>
+
+<p>
+  <strong>Invoice date:</strong>
+  <%= @cost.invoice_date %>
+</p>
+
+<p>
+  <strong>Tax rate:</strong>
+  <%= @cost.tax_rate %>
+</p>
+
+<p>
+  <strong>Invoice amount:</strong>
+  <%= @cost.invoice_amount %>
+</p>
+
+<p>
+  <strong>Cost date:</strong>
+  <%= @cost.cost_date %>
+</p>
+
+<p>
+  <strong>Cost amount:</strong>
+  <%= @cost.cost_amount %>
+</p>
+
+<p>
+  <strong>Explain:</strong>
+  <%= @cost.explain %>
+</p>
+
+<%= link_to 'Edit', edit_cost_path(@cost) %> |
+<%= link_to 'Back', costs_path %>

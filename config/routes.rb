@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :costs
   resources :payees
   resources :incomes
   resources :payers

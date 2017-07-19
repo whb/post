@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  'no': MyString
+  payee: one
+  income: one
+  abstract: MyString
+  invoice_date: 2017-07-19
+  tax_rate: 9.99
+  invoice_amount: 9.99
+  cost_date: 2017-07-19
+  cost_amount: 9.99
+  explain: MyString
+
+two:
+  'no': MyString
+  payee: two
+  income: two
+  abstract: MyString
+  invoice_date: 2017-07-19
+  tax_rate: 9.99
+  invoice_amount: 9.99
+  cost_date: 2017-07-19
+  cost_amount: 9.99
+  explain: MyString

@@ -1,0 +1,20 @@
+<%= simple_form_for(@cost) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :no %>
+    <%= f.association :payee %>
+    <%= f.association :income %>
+    <%= f.input :abstract %>
+    <%= f.input :invoice_date %>
+    <%= f.input :tax_rate %>
+    <%= f.input :invoice_amount %>
+    <%= f.input :cost_date %>
+    <%= f.input :cost_amount %>
+    <%= f.input :explain %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -28,7 +28,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to @income, notice: 'Income was successfully created.' }
+        format.html { redirect_to @income, notice: t('Income was successfully created.') }
         format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class IncomesController < ApplicationController
   def update
     respond_to do |format|
       if @income.update(income_params)
-        format.html { redirect_to @income, notice: 'Income was successfully updated.' }
+        format.html { redirect_to @income, notice: t('Income was successfully updated.') }
         format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class IncomesController < ApplicationController
   def destroy
     @income.destroy
     respond_to do |format|
-      format.html { redirect_to incomes_url, notice: 'Income was successfully destroyed.' }
+      format.html { redirect_to incomes_url, notice: t('Income was successfully destroyed.') }
       format.json { head :no_content }
     end
   end
