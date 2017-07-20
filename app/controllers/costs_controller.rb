@@ -28,7 +28,7 @@ class CostsController < ApplicationController
 
     respond_to do |format|
       if @cost.save
-        format.html { redirect_to @cost, notice: 'Cost was successfully created.' }
+        format.html { redirect_to @cost, notice: t('Cost was successfully created.') }
         format.json { render :show, status: :created, location: @cost }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CostsController < ApplicationController
   def update
     respond_to do |format|
       if @cost.update(cost_params)
-        format.html { redirect_to @cost, notice: 'Cost was successfully updated.' }
+        format.html { redirect_to @cost, notice: t('Cost was successfully updated.') }
         format.json { render :show, status: :ok, location: @cost }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CostsController < ApplicationController
   def destroy
     @cost.destroy
     respond_to do |format|
-      format.html { redirect_to costs_url, notice: 'Cost was successfully destroyed.' }
+      format.html { redirect_to costs_url, notice: t('Cost was successfully destroyed.') }
       format.json { head :no_content }
     end
   end

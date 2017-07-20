@@ -1,5 +1,4 @@
-<%= render 'reference', cost: @cost %>
-
+<div class="well">
 <%= simple_form_for cost, html: { class: 'form-horizontal' } , 
   wrapper: :horizontal_form,
   wrapper_mappings: {
@@ -35,11 +34,5 @@
     </div>
   </div>
 
-  <div class="form-group">
-  <div class="col-sm-offset-3 col-sm-9">
-    <%= f.button :submit, class: 'btn-primary' %>
-    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                incomes_path, class: 'btn btn-default' %>
-  </div>           
-  </div>
 <% end %>
+</div>
