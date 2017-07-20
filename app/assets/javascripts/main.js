@@ -23,10 +23,28 @@ $.extend( $.fn.dataTable.defaults, {
   }
 });
 
+function toggle(switch_element) {
+    if(switch_element.hasClass("fold")) {
+        switch_element.removeClass("fold");
+        switch_element.addClass("unfold");
+        switch_element.html('<span class="glyphicon glyphicon-chevron-up"></span>');
+    } else {
+        switch_element.removeClass("unfold");
+        switch_element.addClass("fold");
+        switch_element.html('<span class="glyphicon glyphicon-chevron-down"></span>');
+    }
+}
+
 $(document).ready(function(){
     $('.datatable').dataTable();
     $(".clickableRow").click(function() {
         window.document.location = $(this).find("a").first().attr("href");
     });
     $('.well').find('input, textarea, select').attr('disabled','true');
+
+    $(".toggle_display").hide();
+    $('.toggle_switch').click(function(){
+      toggle($(this));
+      $(".toggle_display").toggle();
+    });
 });

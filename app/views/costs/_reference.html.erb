@@ -1,0 +1,59 @@
+<%- income = cost.income -%>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2">
+        <strong><%= Income.human_attribute_name(:code) %> : </strong><%= income.code %>
+      </div>
+      <div class="col-md-4">
+        <strong><%= Income.human_attribute_name(:payer) %> : </strong><%= income.payer.name %>
+      </div>
+      <div class="col-md-3">
+        <strong><%= Income.human_attribute_name(:income_amount) %> : </strong><%= income.income_amount %>
+      </div>
+      <div class="col-md-3">
+        <strong><%= Income.human_attribute_name(:actual_amount) %> : </strong><%= income.actual_amount %>
+        <span class="pull-right toggle_switch fold"><span class="glyphicon glyphicon-chevron-down"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body toggle_display">
+    <%= render 'incomes/readonly_form', income: income %>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= Cost.human_attribute_name(:sn) %></th>
+        <th><%= Cost.human_attribute_name(:payee) %></th>
+        <th><%= Cost.human_attribute_name(:invoice_amount) %></th>
+        <th><%= Cost.human_attribute_name(:cost_amount) %></th>
+        <th><%= Cost.human_attribute_name(:unpaid_amount) %></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><%= t("Sum") %></td>
+        <td>$180</td>
+        <td>$180</td>
+        <td>$180</td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= Income.human_attribute_name(:available_amount) %></td>
+        <td>$180</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% income.costs.each do |cost| %>
+        <tr class="clickableRow">
+          <td><%= link_to cost.sn, cost_path(cost.id) %></td>
+          <td><%= cost.payee.brief_name %></td>
+          <td><%= cost.invoice_amount %></td>
+          <td><%= cost.cost_amount %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
