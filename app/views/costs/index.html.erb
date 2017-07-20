@@ -18,7 +18,7 @@
   <tbody>
     <% @costs.each do |cost| %>
       <tr class="clickableRow">
-        <td><%= link_to cost.sn, cost_path(cost.sn) %></td>
+        <td><%= link_to cost.sn, cost_path(cost.id) %></td>
         <td><%= cost.payee.brief_name %></td>
         <td><%= cost.income.code %></td>
         <td><%= cost.invoice_date %></td>

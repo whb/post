@@ -4,6 +4,9 @@ zh-CN:
       income: 
         one: 运输收入
         other: 运输收入列表
+      cost: 
+        one: 运输支出
+        other: 运输支出列表
       payer: 客户
       payee: 承运商
       organization: 组织机构
