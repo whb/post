@@ -8,4 +8,8 @@ class Cost < ApplicationRecord
     cost.tax_rate = income.tax_rate
     cost
   end
+
+  def unpaid_amount
+  	cost_amount ? invoice_amount - cost_amount : invoice_amount
+  end
 end

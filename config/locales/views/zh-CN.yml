@@ -75,6 +75,8 @@ zh-CN:
   costs:
     index:
       title: 运输支出列表
+    reference:
+      summary: 合计
   payers:
     index:
         title: 客户列表

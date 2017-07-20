@@ -12,4 +12,12 @@ class Income < ApplicationRecord
     income.discount_rate = DISCOUNT_RATE
     income
   end
+
+  def income_available_amount
+    income_amount * (1 - DISCOUNT_RATE/100)
+  end
+
+  def actual_available_amount
+    actual_amount * (1 - DISCOUNT_RATE/100)
+  end
 end

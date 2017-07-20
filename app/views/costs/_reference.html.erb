@@ -32,16 +32,16 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="2"><%= t("Sum") %></td>
-        <td>$180</td>
-        <td>$180</td>
-        <td>$180</td>
+        <th colspan="2"><%= t(".summary") %></th>
+        <td id="invoice_sum"></td>
+        <td id="cost_sum"></td>
+        <td id="unpaid_sum"></td>
       </tr>
       <tr>
-        <td colspan="2"><%= Income.human_attribute_name(:available_amount) %></td>
-        <td>$180</td>
-        <td></td>
-        <td></td>
+        <th colspan="2"><%= Income.human_attribute_name(:available_amount) %></th>
+        <td><%= income.income_available_amount %></td>
+        <td><%= income.actual_available_amount %></td>
+        <td> —— </td>
       </tr>
     </tfoot>
     <tbody>
@@ -49,11 +49,37 @@
         <tr class="clickableRow">
           <td><%= link_to cost.sn, cost_path(cost.id) %></td>
           <td><%= cost.payee.brief_name %></td>
-          <td><%= cost.invoice_amount %></td>
-          <td><%= cost.cost_amount %></td>
-          <td></td>
+          <td class="invoice_amount"><%= cost.invoice_amount %></td>
+          <td class="cost_amount"><%= cost.cost_amount %></td>
+          <td class="unpaid_amount"><%= cost.unpaid_amount %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+
+<script type="text/javascript">
+function parseFix(value) {
+  return parseFloat(value).toFixed(2);
+}
+
+function summary(amounts) {
+  var sum = 0;
+  amounts.each(function() {
+    amount = parseFloat($(this).html());
+    if (!isNaN(amount)) sum += amount;
+  });
+  return sum;
+}
+
+function summary_costs() {
+  $("#invoice_sum").html(summary($(".invoice_amount")));
+  $("#cost_sum").html(summary($(".cost_amount")));
+  $("#unpaid_sum").html(summary($(".unpaid_amount")));
+}
+
+$(document).ready(function(){
+    summary_costs();
+});
+</script>
