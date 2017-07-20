@@ -1,4 +1,4 @@
-<%= render 'reference', cost: @cost %>
+<%= render 'costs/reference', cost: @cost %>
 
 <%= simple_form_for cost, html: { class: 'form-horizontal' } , 
   wrapper: :horizontal_form,
@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-md-6">
     <%= f.input :sn, readonly: true %>
-    <%= f.association :payee %>
+    <%= f.association :payee, label_method: :name, value_method: :id %>
     <%= f.association :income, label_method: :code, value_method: :id, disabled: true %>
     <input name="cost[income_id]" type="hidden" value="<%= cost.income.id %>">
     <%= f.input :abstract %>

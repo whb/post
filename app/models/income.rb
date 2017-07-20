@@ -14,10 +14,10 @@ class Income < ApplicationRecord
   end
 
   def income_available_amount
-    income_amount * (1 - DISCOUNT_RATE/100)
+    return income_amount * 0.99
   end
 
   def actual_available_amount
-    actual_amount * (1 - DISCOUNT_RATE/100)
+    return actual_amount * 0.99
   end
 end

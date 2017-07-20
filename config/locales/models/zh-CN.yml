@@ -43,6 +43,7 @@ zh-CN:
         explain: 备注
         cost_date: 支付日期
         cost_amount: 支付金额
+        paid_amount: 已支付金额
         unpaid_amount: 未支付金额
         created_at: 创建时间
         status: 状态

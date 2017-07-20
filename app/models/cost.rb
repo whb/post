@@ -1,6 +1,8 @@
 class Cost < ApplicationRecord
   belongs_to :payee
   belongs_to :income
+  validates :sn, :payee, :income, presence: true
+  validates_uniqueness_of :sn
 
   def self.new_blank(income)
     cost = Cost.new

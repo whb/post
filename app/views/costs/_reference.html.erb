@@ -26,24 +26,10 @@
         <th><%= Cost.human_attribute_name(:sn) %></th>
         <th><%= Cost.human_attribute_name(:payee) %></th>
         <th><%= Cost.human_attribute_name(:invoice_amount) %></th>
-        <th><%= Cost.human_attribute_name(:cost_amount) %></th>
+        <th><%= Cost.human_attribute_name(:paid_amount) %></th>
         <th><%= Cost.human_attribute_name(:unpaid_amount) %></th>
       </tr>
     </thead>
-    <tfoot>
-      <tr>
-        <th colspan="2"><%= t(".summary") %></th>
-        <td id="invoice_sum"></td>
-        <td id="cost_sum"></td>
-        <td id="unpaid_sum"></td>
-      </tr>
-      <tr>
-        <th colspan="2"><%= Income.human_attribute_name(:available_amount) %></th>
-        <td><%= income.income_available_amount %></td>
-        <td><%= income.actual_available_amount %></td>
-        <td> —— </td>
-      </tr>
-    </tfoot>
     <tbody>
       <% income.costs.each do |cost| %>
         <tr class="clickableRow">
@@ -55,6 +41,20 @@
         </tr>
       <% end %>
     </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2"><%= t(".summary") %></th>
+        <td id="invoice_sum"></td>
+        <td id="cost_sum"></td>
+        <td id="unpaid_sum"></td>
+      </tr>
+      <tr>
+        <th colspan="2"><%= Income.human_attribute_name(:available_amount) %></th>
+        <td id="income_available_amount"><%= income.income_available_amount %></td>
+        <td id="actual_available_amount"><%= income.actual_available_amount %></td>
+        <td> —— </td>
+      </tr>
+    </tfoot>
   </table>
 </div>
 
@@ -79,7 +79,46 @@ function summary_costs() {
   $("#unpaid_sum").html(summary($(".unpaid_amount")));
 }
 
+function parseCurrency(td) {
+  amount = parseFloat(td.html());
+  return isNaN(amount) ? 0.00 : amount;
+}
+
+function changeClassToDanger(ele) {
+  ele.removeClass("success");
+  ele.addClass("danger");
+}
+
+function changeClassToSuccess(ele) {
+  ele.removeClass("danger");
+  ele.addClass("success");
+}
+
+function mark_overflow() {
+  invoice_sum = parseCurrency($("#invoice_sum"));
+  income_available_amount = parseCurrency($("#income_available_amount"));
+  if(invoice_sum > income_available_amount) {
+    changeClassToDanger($("#invoice_sum"));
+    changeClassToDanger($("#income_available_amount"));
+  } else {
+    changeClassToSuccess($("#invoice_sum"));
+    changeClassToSuccess($("#income_available_amount"));
+  }
+
+  cost_sum = parseCurrency($("#cost_sum"));
+  actual_available_amount = parseCurrency($("#actual_available_amount"));
+  if(cost_sum > actual_available_amount) {
+    changeClassToDanger($("#cost_sum"));
+    changeClassToDanger($("#actual_available_amount"));
+  } else {
+    changeClassToSuccess($("#cost_sum"));
+    changeClassToSuccess($("#actual_available_amount"));
+  }
+}
+
+
 $(document).ready(function(){
     summary_costs();
+    mark_overflow();
 });
 </script>
