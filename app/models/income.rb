@@ -14,10 +14,10 @@ class Income < ApplicationRecord
   end
 
   def income_available_amount
-    return income_amount * 0.99
+    return income_amount ? income_amount * 0.99 : 0.00
   end
 
   def actual_available_amount
-    return actual_amount * 0.99
+    return actual_amount ? actual_amount * 0.99 : 0.00
   end
 end
