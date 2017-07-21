@@ -31,13 +31,22 @@
       </tr>
     </thead>
     <tbody>
-      <% income.costs.each do |cost| %>
-        <tr class="clickableRow">
-          <td><%= link_to cost.sn, cost_path(cost.id) %></td>
-          <td><%= cost.payee.brief_name %></td>
-          <td class="invoice_amount"><%= cost.invoice_amount %></td>
-          <td class="cost_amount"><%= cost.cost_amount %></td>
-          <td class="unpaid_amount"><%= cost.unpaid_amount %></td>
+      <% income.costs.each do |c| %>
+        <tr class="clickableRow <%= active_class(cost, c) %>">
+          <td><%= link_to c.sn, cost_path(c.id) %></td>
+          <td class="payee"><%= c.payee.brief_name %></td>
+          <td class="invoice_amount"><%= c.invoice_amount %></td>
+          <td class="cost_amount"><%= c.cost_amount %></td>
+          <td class="unpaid_amount"><%= c.unpaid_amount %></td>
+        </tr>
+      <% end %>
+      <% unless cost.id %>
+        <tr class="active">
+          <td><%= cost.sn %></td>
+          <td class="payee"></td>
+          <td class="invoice_amount"></td>
+          <td class="cost_amount"></td>
+          <td class="unpaid_amount"></td>
         </tr>
       <% end %>
     </tbody>
@@ -60,10 +69,6 @@
 
 
 <script type="text/javascript">
-function parseFix(value) {
-  return parseFloat(value).toFixed(2);
-}
-
 function summary(amounts) {
   var sum = 0;
   amounts.each(function() {
@@ -115,10 +120,13 @@ function mark_overflow() {
     changeClassToSuccess($("#actual_available_amount"));
   }
 }
-
+ 
+function recalucateReference() {
+  summary_costs();
+  mark_overflow();
+}
 
 $(document).ready(function(){
-    summary_costs();
-    mark_overflow();
+  recalucateReference();
 });
 </script>

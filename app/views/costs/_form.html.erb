@@ -13,9 +13,9 @@
   <div class="row">
     <div class="col-md-6">
     <%= f.input :sn, readonly: true %>
-    <%= f.association :payee, label_method: :name, value_method: :id %>
     <%= f.association :income, label_method: :code, value_method: :id, disabled: true %>
     <input name="cost[income_id]" type="hidden" value="<%= cost.income.id %>">
+    <%= f.association :payee, label_method: :name, value_method: :id %>
     <%= f.input :abstract %>
     </div>
     <div class="col-md-6">
@@ -39,7 +39,30 @@
   <div class="col-sm-offset-3 col-sm-9">
     <%= f.button :submit, class: 'btn-primary' %>
     <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                incomes_path, class: 'btn btn-default' %>
+                costs_path, class: 'btn btn-default' %>
   </div>           
   </div>
 <% end %>
+
+<script type="text/javascript">
+function recalucate3amount() {
+  invoice_amount = $("#cost_invoice_amount").val();
+  cost_amount = $("#cost_cost_amount").val();
+  $("tr.active .invoice_amount").html(invoice_amount);
+  $("tr.active .cost_amount").html(cost_amount);
+  $("tr.active .unpaid_amount").html(invoice_amount - cost_amount);
+  recalucateReference();
+}
+
+$("#cost_invoice_amount").change(function() {
+  recalucate3amount();
+});
+
+$("#cost_cost_amount").change(function() {
+  recalucate3amount();
+});
+
+$("#cost_payee_id").change(function() {
+  $("tr.active .payee").html($("#cost_payee_id option:selected").text());
+});
+</script>
