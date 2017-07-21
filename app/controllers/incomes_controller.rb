@@ -64,6 +64,7 @@ class IncomesController < ApplicationController
   # GET /incomes/1/pay
   def pay
     @cost = Cost.new_blank(@income)
+    render "costs/new"
   end
 
   private

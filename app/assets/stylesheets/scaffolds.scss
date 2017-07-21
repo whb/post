@@ -81,3 +81,7 @@ label {
 .table>thead>tr>td.danger, .table>tbody>tr>td.danger, .table>tfoot>tr>td.danger, .table>thead>tr>th.danger, .table>tbody>tr>th.danger, .table>tfoot>tr>th.danger, .table>thead>tr.danger>td, .table>tbody>tr.danger>td, .table>tfoot>tr.danger>td, .table>thead>tr.danger>th, .table>tbody>tr.danger>th, .table>tfoot>tr.danger>th {
   background-color: #f28e8e;
 }
+
+#invoice_sum, #cost_sum, #income_available_amount, #actual_available_amount {
+  font-weight: bold;
+}

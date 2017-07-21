@@ -23,6 +23,22 @@ $.extend( $.fn.dataTable.defaults, {
   }
 });
 
+
+accounting.settings = {
+    currency: {
+        symbol : "￥",   // default currency symbol is '$'
+        format: "%s%v", // controls output: %s = symbol, %v = value/number (can be object: see below)
+        decimal : ".",  // decimal point separator
+        thousand: ",",  // thousands separator
+        precision : 2   // decimal places
+    },
+    number: {
+        precision : 0,  // default precision on numbers is 0
+        thousand: ",",
+        decimal : "."
+    }
+}
+
 function toggle(switch_element) {
     if(switch_element.hasClass("fold")) {
         switch_element.removeClass("fold");
@@ -36,6 +52,10 @@ function toggle(switch_element) {
 }
 
 $(document).ready(function(){
+    $('.go-back').click(function(){
+        window.history.back();
+    });
+    
     $('.datatable').dataTable();
     $(".clickableRow").click(function() {
         window.document.location = $(this).find("a").first().attr("href");

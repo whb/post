@@ -1,4 +1,4 @@
-<%= render 'costs/reference', cost: @cost %>
+<%= render 'costs/reference', cost: cost %>
 
 <%= simple_form_for cost, html: { class: 'form-horizontal' } , 
   wrapper: :horizontal_form,
@@ -39,7 +39,7 @@
   <div class="col-sm-offset-3 col-sm-9">
     <%= f.button :submit, class: 'btn-primary' %>
     <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                costs_path, class: 'btn btn-default' %>
+                "", class: 'btn btn-default go-back' %>
   </div>           
   </div>
 <% end %>
