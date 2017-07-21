@@ -1,4 +1,5 @@
 $.extend( $.fn.dataTable.defaults, {
+  pageLength : 25,
   language: {
     processing:     "处理中...",
     search:         "搜索:",
