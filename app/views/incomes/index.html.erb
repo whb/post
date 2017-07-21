@@ -22,11 +22,11 @@
         <td><%= link_to income.code, income_path(income) %></td>
         <td><%= income.payer.brief_name %></td>
         <td><%= income.bill_date %></td>
-        <td><%= income.income_amount %></td>
+        <td class="money"><%= income.income_amount %></td>
         <td><%= income.invoice_date %></td>
         <td><%= income.tax_rate %></td>
         <td><%= income.actual_date %></td>
-        <td><%= income.actual_amount %></td>
+        <td class="money"><%= income.actual_amount %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_income_path(income), :class => 'btn btn-default btn-xs' %>

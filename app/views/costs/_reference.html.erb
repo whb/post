@@ -69,24 +69,23 @@
 
 
 <script type="text/javascript">
-function summary(amounts) {
+function parseCurrency(td) {
+  return accounting.unformat(td.html());
+}
+
+function sumAndFormat(amounts) {
   var sum = 0;
   amounts.each(function() {
     amount = parseCurrency($(this));
     sum += amount;
   });
-  return sum;
+  return accounting.format(sum);
 }
 
 function summary_costs() {
-  $("#invoice_sum").html(summary($(".invoice_amount")));
-  $("#cost_sum").html(summary($(".cost_amount")));
-  $("#unpaid_sum").html(summary($(".unpaid_amount")));
-}
-
-function parseCurrency(td) {
-  amount = accounting.unformat(td.html());
-  return isNaN(amount) ? 0.00 : amount;
+  $("#invoice_sum").html(sumAndFormat($(".invoice_amount")));
+  $("#cost_sum").html(sumAndFormat($(".cost_amount")));
+  $("#unpaid_sum").html(sumAndFormat($(".unpaid_amount")));
 }
 
 function changeClassToDanger(ele) {
@@ -99,35 +98,23 @@ function changeClassToSuccess(ele) {
   ele.addClass("success");
 }
 
-function mark_overflow() {
-  invoice_sum = parseCurrency($("#invoice_sum"));
-  income_available_amount = parseCurrency($("#income_available_amount"));
-  if(invoice_sum > income_available_amount) {
-    changeClassToDanger($("#invoice_sum"));
-    changeClassToDanger($("#income_available_amount"));
+function mark_overflow(sum_object, available_object) {
+  sum = parseCurrency(sum_object);
+  available_amount = parseCurrency(available_object);
+  if(sum > available_amount) {
+    changeClassToDanger(sum_object);
+    changeClassToDanger(available_object);
   } else {
-    changeClassToSuccess($("#invoice_sum"));
-    changeClassToSuccess($("#income_available_amount"));
-  }
-
-  cost_sum = parseCurrency($("#cost_sum"));
-  actual_available_amount = parseCurrency($("#actual_available_amount"));
-  if(cost_sum > actual_available_amount) {
-    changeClassToDanger($("#cost_sum"));
-    changeClassToDanger($("#actual_available_amount"));
-  } else {
-    changeClassToSuccess($("#cost_sum"));
-    changeClassToSuccess($("#actual_available_amount"));
+    changeClassToSuccess(sum_object);
+    changeClassToSuccess(available_object);
   }
 }
- 
+
 function recalucateReference() {
   summary_costs();
-  mark_overflow();
-
-  $(".money").each(function() {
-    $(this).html(accounting.formatMoney($(this).html()));
-  });
+  mark_overflow($("#invoice_sum"), $("#income_available_amount"));
+  mark_overflow($("#cost_sum"), $("#actual_available_amount"));
+  formatMoneyInTable();
 }
 
 $(document).ready(function(){

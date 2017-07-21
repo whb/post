@@ -22,9 +22,9 @@
         <td><%= cost.payee.brief_name %></td>
         <td><%= cost.income.code %></td>
         <td><%= cost.invoice_date %></td>
-        <td><%= cost.invoice_amount %></td>
+        <td class="money"><%= cost.invoice_amount %></td>
         <td><%= cost.cost_date %></td>
-        <td><%= cost.cost_amount %></td>
+        <td class="money"><%= cost.cost_amount %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_cost_path(cost), :class => 'btn btn-default btn-xs' %>

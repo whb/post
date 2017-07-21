@@ -51,6 +51,13 @@ function toggle(switch_element) {
     }
 }
 
+
+function formatMoneyInTable() {
+  $("td.money").each(function() {
+    $(this).html(accounting.formatMoney($(this).html()));
+  });
+}
+
 $(document).ready(function(){
     $('.go-back').click(function(){
         window.history.back();
@@ -62,9 +69,12 @@ $(document).ready(function(){
     });
     $('.well').find('input, textarea, select').attr('disabled','true');
 
+    formatMoneyInTable();
+
     $(".toggle_display").hide();
     $('.toggle_switch').click(function(){
       toggle($(this));
       $(".toggle_display").toggle();
     });
+
 });
