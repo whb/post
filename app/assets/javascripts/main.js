@@ -78,4 +78,7 @@ $(document).ready(function(){
       $(".toggle_display").toggle();
     });
 
+
+    // auto focus first input EXCEPT expense and reimbursment form
+    $(":text:visible:enabled:not([readonly]):first").not("form.disable_auto_focus input").focus();
 });
