@@ -67,6 +67,12 @@ class IncomesController < ApplicationController
     render "costs/new"
   end
 
+  # GET /incomes/extract
+  def extract
+    @peroid =  (Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month)
+    @incomes = Income.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_income

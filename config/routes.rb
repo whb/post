@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :payees
   resources :incomes do
     get :pay, :on => :member
+    get :extract, :on => :collection
   end
   resources :payers
   get "home/index"
