@@ -69,7 +69,7 @@ class IncomesController < ApplicationController
 
   # GET /incomes/extract
   def extract
-    @peroid =  (Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month)
+    @peroid =  params.has_key?(:peroid) ? Peroid.new(peroid_params) : Peroid.new({begin: Date.today.prev_month.beginning_of_month, end: Date.today.prev_month.end_of_month})
     @incomes = Income.all
   end
 
@@ -82,5 +82,9 @@ class IncomesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
       params.require(:income).permit(:code, :payer_id, :abstract, :bill_date, :account_date, :income_amount, :settlement_amount, :invoice_date, :invoice_num, :tax_rate, :explain, :discount_rate, :available_amount, :actual_amount, :actual_date)
+    end
+
+    def peroid_params
+      params.require(:peroid).permit(:begin, :end)
     end
 end

@@ -4,17 +4,21 @@
 </div>
 
 
-<form class="form-inline">
-  <div class="form-group">
-    <label for="exampleInputName2">Begin</label>
-    <input type="text" class="form-control" id="exampleInputName2" value="<%= @peroid.begin %>">
+<%= simple_form_for :peroid, html: { method: :get, class: 'form-horizontal' },
+  wrapper: :horizontal_form do |f| %>
+  <%= f.error_notification %> 
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :begin, as: :datepicker %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :end, as: :datepicker  %>
+    </div>
+    <div class="col-md-4">
+      <%= f.button :submit, name: 'action', value: t('Search'),  'data-disable-with' => t('Search') %>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleInputEmail2">End</label>
-    <input type="text" class="form-control" id="exampleInputEmail2" value="<%= @peroid.end %>">
-  </div>
-  <button type="submit" class="btn btn-default">Send invitation</button>
-</form>
+<% end %>
 
 <table class="table table-striped table-bordered table-hover">
   <thead>

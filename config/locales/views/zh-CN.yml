@@ -23,6 +23,7 @@ zh-CN:
       default_message: 请检查下面的错误数据：   
   helpers:
     actions: 操作
+
     submit:
       create: 新增%{model}
       submit: 储存%{model}
@@ -30,6 +31,7 @@ zh-CN:
       commit: 提交%{model}
       approve: 审批%{model}
       pay: 支付%{model}
+
     links:
       edit: 编辑
       verify: 确认
@@ -130,3 +132,4 @@ zh-CN:
   month: 月
   Select Organization: 选择部门...
   Select Category: 选择分类...
+  Search: 搜索
