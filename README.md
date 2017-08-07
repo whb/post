@@ -43,6 +43,15 @@ rails generate scaffold cost no:index payee:references income:references abstrac
 
 rails generate migration RenameNoColumnName
 
+
+
+
+rails generate model Fee begin_date:date end_date:date 'income_amount:decimal{10,2}' 'fee_amount:decimal{10,2}' 'part_amount1:decimal{10,2}'  'percent1:decimal{3,1}' 'part_amount2:decimal{10,2}'  'percent2:decimal{3,1}'
+rails generate model FeeIncomeList fee:references income:references
+rails generate model FeeDetail fee:references income:references 'fee_amount:decimal{10,2}'
+
+
+
 rails generate model revenue income:references date:date 'amount:decimal{10,2}'
 
 rails generate model payment cost:references date:date 'amount:decimal{10,2}'
