@@ -70,7 +70,7 @@ class IncomesController < ApplicationController
   # GET /incomes/extract
   def extract
     @peroid =  params.has_key?(:peroid) ? Peroid.new(peroid_params) : Peroid.new({begin: Date.today.prev_month.beginning_of_month, end: Date.today.prev_month.end_of_month})
-    @incomes = Income.all
+    @incomes = Income.where(:bill_date => @peroid.range)
   end
 
   private

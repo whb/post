@@ -76,14 +76,6 @@ zh-CN:
         organization: 所属机构
         roles: 角色
 
-      period: 
-        year: 年份
-        explain: 说明
-      budget:
-        category: 费用类型
-        amount: 金额
-        cost: 支出金额
-        available: 剩余金额
     errors: 
       models:
         approval:
