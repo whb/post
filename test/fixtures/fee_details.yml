@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fee: one
+  income: one
+  fee_amount: 9.99
+
+two:
+  fee: two
+  income: two
+  fee_amount: 9.99

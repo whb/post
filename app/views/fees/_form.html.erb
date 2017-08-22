@@ -1,0 +1,18 @@
+<%= simple_form_for(@fee) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :begin_date %>
+    <%= f.input :end_date %>
+    <%= f.input :income_amount %>
+    <%= f.input :fee_amount %>
+    <%= f.input :part_amount1 %>
+    <%= f.input :percent1 %>
+    <%= f.input :part_amount2 %>
+    <%= f.input :percent2 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

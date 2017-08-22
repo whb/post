@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719080926) do
+ActiveRecord::Schema.define(version: 20170822073744) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sn"
@@ -28,6 +28,38 @@ ActiveRecord::Schema.define(version: 20170719080926) do
     t.index ["income_id"], name: "index_costs_on_income_id", using: :btree
     t.index ["payee_id"], name: "index_costs_on_payee_id", using: :btree
     t.index ["sn"], name: "index_costs_on_sn", using: :btree
+  end
+
+  create_table "fee_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "fee_id"
+    t.integer  "income_id"
+    t.decimal  "fee_amount", precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["fee_id"], name: "index_fee_details_on_fee_id", using: :btree
+    t.index ["income_id"], name: "index_fee_details_on_income_id", using: :btree
+  end
+
+  create_table "fee_income_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "fee_id"
+    t.integer  "income_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fee_id"], name: "index_fee_income_lists_on_fee_id", using: :btree
+    t.index ["income_id"], name: "index_fee_income_lists_on_income_id", using: :btree
+  end
+
+  create_table "fees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.decimal  "income_amount", precision: 10, scale: 2
+    t.decimal  "fee_amount",    precision: 10, scale: 2
+    t.decimal  "part_amount1",  precision: 10, scale: 2
+    t.decimal  "percent1",      precision: 3,  scale: 1
+    t.decimal  "part_amount2",  precision: 10, scale: 2
+    t.decimal  "percent2",      precision: 3,  scale: 1
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "incomes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,5 +124,9 @@ ActiveRecord::Schema.define(version: 20170719080926) do
 
   add_foreign_key "costs", "incomes"
   add_foreign_key "costs", "payees"
+  add_foreign_key "fee_details", "fees"
+  add_foreign_key "fee_details", "incomes"
+  add_foreign_key "fee_income_lists", "fees"
+  add_foreign_key "fee_income_lists", "incomes"
   add_foreign_key "incomes", "payers"
 end

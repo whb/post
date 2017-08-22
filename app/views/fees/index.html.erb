@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Begin date</th>
+      <th>End date</th>
+      <th>Income amount</th>
+      <th>Fee amount</th>
+      <th>Part amount1</th>
+      <th>Percent1</th>
+      <th>Part amount2</th>
+      <th>Percent2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fees.each do |fee| %>
+      <tr>
+        <td><%= fee.begin_date %></td>
+        <td><%= fee.end_date %></td>
+        <td><%= fee.income_amount %></td>
+        <td><%= fee.fee_amount %></td>
+        <td><%= fee.part_amount1 %></td>
+        <td><%= fee.percent1 %></td>
+        <td><%= fee.part_amount2 %></td>
+        <td><%= fee.percent2 %></td>
+        <td><%= link_to 'Show', fee %></td>
+        <td><%= link_to 'Edit', edit_fee_path(fee) %></td>
+        <td><%= link_to 'Destroy', fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fee', new_fee_path %>
