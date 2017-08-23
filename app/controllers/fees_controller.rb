@@ -14,11 +14,12 @@ class FeesController < ApplicationController
 
   # GET /fees/new
   def new
-    @peroid =  params.has_key?(:peroid) ? Peroid.new(peroid_params) : Peroid.new({begin: Date.today.prev_month.beginning_of_month, end: Date.today.prev_month.end_of_month})
-    @incomes = Income.where(:bill_date => @peroid.range)
-    @fee = Fee.new
-    @fee.begin_date = @peroid.begin
-    @fee.end_date = @peroid.end
+    @fee = Fee.new()
+    @fee.begin_date = params[:begin_date]
+    @fee.end_date = params[:end_date]
+    @fee.begin_date ||= Date.today.prev_month.beginning_of_month
+    @fee.end_date ||= Date.today.prev_month.end_of_month
+    @incomes = Income.where(:bill_date => (@fee.begin_date..@fee.end_date))
   end
 
   # GET /fees/1/edit

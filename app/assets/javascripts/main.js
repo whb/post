@@ -59,6 +59,28 @@ function formatMoneyInTable() {
   });
 }
 
+function parseCurrency(td) {
+  return accounting.unformat(td.html());
+}
+
+function sumCurrency(amounts) {
+  var sum = 0;
+  amounts.each(function() {
+    amount = parseCurrency($(this));
+    sum += amount;
+  });
+  return sum;
+}
+
+function sumAndFormat(amounts) {
+  var sum = 0;
+  amounts.each(function() {
+    amount = parseCurrency($(this));
+    sum += amount;
+  });
+  return accounting.format(sum);
+}
+
 $(document).ready(function(){
     $('.go-back').click(function(){
         window.history.back();

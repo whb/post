@@ -69,19 +69,6 @@
 
 
 <script type="text/javascript">
-function parseCurrency(td) {
-  return accounting.unformat(td.html());
-}
-
-function sumAndFormat(amounts) {
-  var sum = 0;
-  amounts.each(function() {
-    amount = parseCurrency($(this));
-    sum += amount;
-  });
-  return accounting.format(sum);
-}
-
 function summary_costs() {
   $("#invoice_sum").html(sumAndFormat($(".invoice_amount")));
   $("#cost_sum").html(sumAndFormat($(".cost_amount")));
