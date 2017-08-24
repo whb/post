@@ -76,10 +76,8 @@
         <td class="money"><%= income.actual_amount %></td>
         <td></td>
         <td></td>
-        <td><input class="fee_incomes_fee_amount numeric decimal optional" name="fee[incomes_attributes][<%= i %>][fee_amount]" type="number" value="<%= income.fee_amount %>"/></td>
-        <td>
-          <input class="fee_incomes_id" name="fee[incomes_attributes][<%= i %>][id]" type="checkbox" value="<%= income.id %>" checked="checked"/>
-        </td>
+        <td>￥<%= income_fee_amount_input(i, income) %></td>
+        <td><%= income_id_checkbox(i, income.id, @fee.incomes) %></td>
       </tr>
     <% end %>
   </tbody>
