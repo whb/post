@@ -15,14 +15,15 @@ class FeesController < ApplicationController
   # GET /fees/new
   def new
     @fee = Fee.new_blank()
-    @fee.begin_date = params[:begin_date] if params[:begin_date]
-    @fee.end_date = params[:end_date] if params[:end_date]
-
+    @fee.begin_date = params[:begin_date] if params[:begin_date].present?
+    @fee.end_date = params[:end_date] if params[:end_date].present?
     find_selected_incomes
   end
 
   # GET /fees/1/edit
   def edit
+    @fee.begin_date = params[:begin_date] if params[:begin_date].present?
+    @fee.end_date = params[:end_date] if params[:end_date].present?
     find_selected_incomes
   end
 

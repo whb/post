@@ -98,7 +98,7 @@ $("#searchButton").click(function(){
   var params = {};
   params['begin_date'] = $('#fee_begin_date').val();
   params['end_date'] = $('#fee_end_date').val();
-  location.href =  "<%= new_fee_path %>?" + $.param(params);
+  location.href =  location.href + "?" + $.param(params);
 });
 
 $(".fee_incomes_id").click(function(){
