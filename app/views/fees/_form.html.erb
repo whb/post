@@ -28,8 +28,8 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td>￥<%= f.input_field :part_amount1 %></td>
-      <td><%= f.input_field :percent1 %></td>
+      <td>￥<%= f.input_field :part_amount1 %><%= f.error :part_amount1 %></td>
+      <td><%= f.input_field :percent1 %><%= f.error :percent1 %></td>
       <td></td>
     </tr>
     <tr>
@@ -42,9 +42,9 @@
   <tfoot>
     <tr>
       <th><%= t(".summary") %></th>
-      <td class="money" id="invoice_sum"></td>
+      <td class="money" id="income_sum"></td>
       <td></td>
-      <td class="money" id="unpaid_sum"></td>
+      <td class="money" id="fee_amount"></td>
     </tr>
   </tfoot>
 </table>
@@ -110,13 +110,12 @@ function sumIncomeAmount() {
   $(".income_tr").each(function() {
     var tr = $(this);
     if(tr.find(".fee_incomes_id").is(':checked')) {
-      
       amount = parseCurrency(tr.find(".income_amount"));
       sum += amount;
     }
   });
 
-  $("#fee_part_amount1").val(sum);
+  $("#income_sum").html(accounting.format(sum));
 }
 
 $(document).ready(function(){

@@ -36,6 +36,7 @@ class FeesController < ApplicationController
         format.html { redirect_to @fee, notice: t('Fee was successfully created.') }
         format.json { render :show, status: :created, location: @fee }
       else
+        find_selected_incomes
         format.html { render :new }
         format.json { render json: @fee.errors, status: :unprocessable_entity }
       end
@@ -51,6 +52,7 @@ class FeesController < ApplicationController
         format.html { redirect_to @fee, notice: t('Fee was successfully updated.') }
         format.json { render :show, status: :ok, location: @fee }
       else
+        find_selected_incomes
         format.html { render :edit }
         format.json { render json: @fee.errors, status: :unprocessable_entity }
       end
