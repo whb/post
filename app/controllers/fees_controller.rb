@@ -24,7 +24,7 @@ class FeesController < ApplicationController
   def edit
     @fee.begin_date = params[:begin_date] if params[:begin_date].present?
     @fee.end_date = params[:end_date] if params[:end_date].present?
-    find_selected_incomes
+    # find_selected_incomes
   end
 
   # POST /fees
