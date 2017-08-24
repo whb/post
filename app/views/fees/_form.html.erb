@@ -67,19 +67,22 @@
   </thead>
   <tbody>
 
-    <% @incomes.each_with_index  do |income, i| %>
+
+    <%= f.fields_for :incomes do |ff| %>
       <tr class="income_tr">
-        <td><%= link_to income.code, income_path(income) %></td>
-        <td><%= income.payer.brief_name %></td>
-        <td><%= income.bill_date %></td>
-        <td class="money income_amount"><%= income.income_amount %></td>
-        <td class="money"><%= income.actual_amount %></td>
+        <td><%= ff.object.code %></td>
+        <td><%= ff.object.payer.brief_name %></td>
+        <td><%= ff.object.bill_date %></td>
+        <td class="money income_amount"><%= ff.object.income_amount %></td>
+        <td class="money"><%= ff.object.actual_amount %></td>
         <td></td>
         <td></td>
-        <td>￥<%= income_fee_amount_input(i, income) %></td>
-        <td><%= income_id_checkbox(i, income.id, @fee.incomes) %></td>
+        <td><%= ff.number_field :fee_amount %></td>
+        <td><%= ff.hidden_field :id %><%= ff.check_box :selected %></td>
       </tr>
     <% end %>
+
+
   </tbody>
 </table>
 
