@@ -78,7 +78,7 @@
         <td></td>
         <td></td>
         <td><%= ff.number_field :fee_amount %></td>
-        <td><%= ff.hidden_field :id %><%= ff.check_box :selected %></td>
+        <td><%= ff.hidden_field :id %><%= ff.check_box :fee_extracted, {}, 'true', 'false' %></td>
       </tr>
     <% end %>
 

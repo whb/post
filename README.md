@@ -53,6 +53,7 @@ rails generate model FeeDetail fee:references income:references 'fee_amount:deci
 rails generate migration DropFeeIncomeListsTable
 rails generate migration DropFeeDetailsTable
 rails generate migration AddFeeColumnToIncomes
+rails generate migration AddExtractFeeFlagColumnToIncomes
 
 
 
