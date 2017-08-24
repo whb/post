@@ -14,11 +14,10 @@ class FeesController < ApplicationController
 
   # GET /fees/new
   def new
-    @fee = Fee.new()
-    @fee.begin_date = params[:begin_date]
-    @fee.end_date = params[:end_date]
-    @fee.begin_date ||= Date.today.prev_month.beginning_of_month
-    @fee.end_date ||= Date.today.prev_month.end_of_month
+    @fee = Fee.new_blank()
+    @fee.begin_date = params[:begin_date] if params[:begin_date]
+    @fee.end_date = params[:end_date] if params[:end_date]
+
     @incomes = Income.where(:bill_date => (@fee.begin_date..@fee.end_date))
   end
 
@@ -30,9 +29,9 @@ class FeesController < ApplicationController
   # POST /fees.json
   def create
     @fee = Fee.new(fee_params)
-
     respond_to do |format|
       if @fee.save
+        updateIncomes
         format.html { redirect_to @fee, notice: 'Fee was successfully created.' }
         format.json { render :show, status: :created, location: @fee }
       else
@@ -76,4 +75,13 @@ class FeesController < ApplicationController
     def fee_params
       params.require(:fee).permit(:begin_date, :end_date, :income_amount, :fee_amount, :part_amount1, :percent1, :part_amount2, :percent2)
     end
+
+    def updateIncomes
+      params[:fee][:incomes_attributes].each do |key, incomeParam|
+        income = Income.find(incomeParam[:id])
+        income.fee = @fee
+        income.fee_amount = incomeParam[:fee_amount]
+        income.save
+      end
+    end  
 end
