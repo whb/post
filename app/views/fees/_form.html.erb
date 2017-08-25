@@ -75,22 +75,8 @@
         <td class="money"><%= income.actual_amount %></td>
         <td></td>
         <td></td>
-        <td id="fee_detail_<%=income.id%>"></td>
-        <td><input type="checkbox" name="add_fee_detail" value="<%=income.id%>" ></td>
-      </tr>
-    <% end %>
-
-    <%= f.fields_for :fee_details do |ff| %>
-      <tr class="income_tr">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="money income_amount"></td>
-        <td class="money"></td>
-        <td></td>
-        <td></td>
-        <td><%= ff.hidden_field :id %><%= ff.hidden_field :income_id %><%= ff.number_field :fee_amount %></td>
-        <td><%= ff.check_box :_destroy %></td>
+        <td id="fee_detail_<%=income.id%>"><%= fee_detail_inputs(i, @fee.fee_details, income.id) %></td>
+        <td><%= fee_detail_checkbox(@fee.fee_details, income.id) %></td>
       </tr>
     <% end %>
   </tbody>

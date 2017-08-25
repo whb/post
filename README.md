@@ -60,7 +60,10 @@ rails generate model FeeDetail fee:references income:references 'fee_amount:deci
 rails generate migration RecreateFeeDetailsTable
 
 
-
+TODO:
+1 fee_detail_inputs keep id_input
+2 input and ￥ gap
+3 fee_details_attributes index
 
 rails generate model revenue income:references date:date 'amount:decimal{10,2}'
 rails generate model payment cost:references date:date 'amount:decimal{10,2}'

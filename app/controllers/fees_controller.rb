@@ -15,7 +15,6 @@ class FeesController < ApplicationController
   # GET /fees/new
   def new
     @fee = Fee.new_blank()
-    4.times { @fee.fee_details.build }
     @fee.begin_date = params[:begin_date] if params[:begin_date].present?
     @fee.end_date = params[:end_date] if params[:end_date].present?
     find_selected_incomes
@@ -93,7 +92,7 @@ class FeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fee_params
-      params.require(:fee).permit(:begin_date, :end_date, :income_amount, :fee_amount, :part_amount1, :percent1, :part_amount2, :percent2, fee_details: [:id, :fee_amount, :_destroy])
+      params.require(:fee).permit(:begin_date, :end_date, :income_amount, :fee_amount, :part_amount1, :percent1, :part_amount2, :percent2, fee_details_attributes: [:id, :income_id, :fee_amount, :_destroy])
     end
 
     def updateIncomes

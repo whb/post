@@ -1,5 +1,5 @@
 class Fee < ApplicationRecord
-	has_many :fee_details
+	has_many :fee_details, dependent: :destroy
 	accepts_nested_attributes_for :fee_details, allow_destroy: true
 
 	validates :begin_date, :end_date, :part_amount1, :percent1, presence: true
