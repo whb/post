@@ -57,7 +57,7 @@ rails generate migration AddExtractFeeFlagColumnToIncomes
 
 rails generate model FeeDetail fee:references income:references 'fee_amount:decimal{10,2}'
 
-
+rails generate migration RecreateFeeDetailsTable
 
 
 

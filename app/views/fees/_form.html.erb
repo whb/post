@@ -75,8 +75,8 @@
         <td class="money"><%= income.actual_amount %></td>
         <td></td>
         <td></td>
-        <td>￥</td>
-        <td></td>
+        <td id="fee_detail_<%=income.id%>">￥</td>
+        <td><input type="checkbox" name="add_fee_detail" value="<%=income.id%>" ></td>
       </tr>
     <% end %>
 
@@ -89,8 +89,8 @@
         <td class="money"></td>
         <td></td>
         <td></td>
-        <td><%= ff.number_field :fee_amount %></td>
-        <td><%= ff.hidden_field :id %><%= ff.check_box :_destroy %></td>
+        <td><%= ff.hidden_field :id %><%= ff.hidden_field :income_id %><%= ff.number_field :fee_amount %></td>
+        <td><%= ff.check_box :_destroy %></td>
       </tr>
     <% end %>
   </tbody>
@@ -130,6 +130,20 @@ function sumIncomeAmount() {
 
   $("#income_sum").html(accounting.format(sum));
 }
+
+;NestedAttr = {
+  inputs_template : 
+'￥<input type="hidden" name="fee[fee_details_attributes][0][id]" id="fee_fee_details_attributes_0_id"> \
+<input type="hidden" name="fee[fee_details_attributes][0][income_id]" id="fee_fee_details_attributes_0_income_id"> \
+<input type="number" name="fee[fee_details_attributes][0][fee_amount]" id="fee_fee_details_attributes_0_fee_amount">',
+  destroy_template :
+'<input type="hidden" value="1" name="fee[fee_details_attributes][0][_destroy]">',
+}
+
+$("input[name='add_fee_detail']").click(function(){
+  td = "#fee_detail_" + $(this).val();
+  $(td).html(NestedAttr.inputs_template);
+});
 
 $(document).ready(function(){
   sumIncomeAmount();

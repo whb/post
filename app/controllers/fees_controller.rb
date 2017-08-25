@@ -76,7 +76,7 @@ class FeesController < ApplicationController
     end
 
     def find_selected_incomes
-      @fee.incomes = (Income.where(bill_date: (@fee.begin_date..@fee.end_date), fee: nil)).or(Income.where(fee: @fee))
+      @incomes = (Income.where(bill_date: (@fee.begin_date..@fee.end_date)))
       # candidate_incomes = (Income.where(bill_date: (@fee.begin_date..@fee.end_date), fee: nil)).or(Income.where(fee: @fee))
       # db_incomes_id = @fee.incomes.map {|income| income.id}
       # @fee.incomes = Array.new
