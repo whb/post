@@ -67,7 +67,7 @@
   </thead>
   <tbody>
     <% @incomes.each_with_index  do |income, i| %>
-      <tr class="income_tr">
+      <tr class="income_tr" id="tr_<%=income.id%>">
         <td><%= link_to income.code, income_path(income) %></td>
         <td><%= income.payer.brief_name %></td>
         <td><%= income.bill_date %></td>
@@ -75,7 +75,7 @@
         <td class="money"><%= income.actual_amount %></td>
         <td></td>
         <td></td>
-        <td id="fee_detail_<%=income.id%>">￥</td>
+        <td id="fee_detail_<%=income.id%>"></td>
         <td><input type="checkbox" name="add_fee_detail" value="<%=income.id%>" ></td>
       </tr>
     <% end %>
@@ -133,16 +133,48 @@ function sumIncomeAmount() {
 
 ;NestedAttr = {
   inputs_template : 
-'￥<input type="hidden" name="fee[fee_details_attributes][0][id]" id="fee_fee_details_attributes_0_id"> \
-<input type="hidden" name="fee[fee_details_attributes][0][income_id]" id="fee_fee_details_attributes_0_income_id"> \
-<input type="number" name="fee[fee_details_attributes][0][fee_amount]" id="fee_fee_details_attributes_0_fee_amount">',
+    '￥<input type="hidden" name="fee[fee_details_attributes][0][id]" id="fee_fee_details_attributes_0_id"> \
+    <input type="hidden" value="INCOME_ID" name="fee[fee_details_attributes][0][income_id]" id="fee_fee_details_attributes_0_income_id"> \
+    <input type="number" name="fee[fee_details_attributes][0][fee_amount]" id="fee_fee_details_attributes_0_fee_amount">',
+  
   destroy_template :
-'<input type="hidden" value="1" name="fee[fee_details_attributes][0][_destroy]">',
+    '<input type="hidden" value="1" name="fee[fee_details_attributes][0][_destroy]">',
+
+  get_next_attributes_count : function() {
+    var max_index = -1;
+    $("input[name^='fee[fee_details_attributes]'][name$='[id]']").each(function() {
+      var index = parseInt($(this).attr("name").match(/\d+/)[0]);
+      if(index > max_index) max_index = index
+    });
+    return max_index + 1;
+  },
+
+  fee_detail_inputs : function(income_id) {
+    return this.inputs_template.replace(/0/g, this.get_next_attributes_count()).replace(/INCOME_ID/g, income_id);
+  },
+
+  destroy_flag : function(income_id) {
+    var id_input = $("#tr_" + income_id).find("input[name^='fee[fee_details_attributes]'][name$='[id]']");
+    var index = parseInt(id_input.attr("name").match(/\d+/)[0]);
+    var id_value = id_input.val();
+    if(id_value) {
+      return id_input.prop('outerHTML') + this.destroy_template.replace(/0/g, index);
+    } else {
+      return "";
+    }
+  },
 }
 
 $("input[name='add_fee_detail']").click(function(){
-  td = "#fee_detail_" + $(this).val();
-  $(td).html(NestedAttr.inputs_template);
+  income_id = $(this).val();
+  td = $("#fee_detail_" + income_id);
+
+  if($(this).is(':checked')) {
+    td.html(NestedAttr.fee_detail_inputs(income_id));
+  } else {
+    td.html(NestedAttr.destroy_flag(income_id));
+  }
+  
 });
 
 $(document).ready(function(){
