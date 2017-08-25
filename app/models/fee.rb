@@ -1,6 +1,6 @@
 class Fee < ApplicationRecord
-	has_many :incomes
-	accepts_nested_attributes_for :incomes, :reject_if => lambda { |a| a[:fee_extracted] == 'false' }
+	has_many :fee_details
+	accepts_nested_attributes_for :fee_details, allow_destroy: true
 
 	validates :begin_date, :end_date, :part_amount1, :percent1, presence: true
 

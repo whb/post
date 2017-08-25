@@ -15,6 +15,7 @@ class FeesController < ApplicationController
   # GET /fees/new
   def new
     @fee = Fee.new_blank()
+    4.times { @fee.fee_details.build }
     @fee.begin_date = params[:begin_date] if params[:begin_date].present?
     @fee.end_date = params[:end_date] if params[:end_date].present?
     find_selected_incomes
@@ -24,7 +25,7 @@ class FeesController < ApplicationController
   def edit
     @fee.begin_date = params[:begin_date] if params[:begin_date].present?
     @fee.end_date = params[:end_date] if params[:end_date].present?
-    # find_selected_incomes
+    find_selected_incomes
   end
 
   # POST /fees
@@ -47,9 +48,7 @@ class FeesController < ApplicationController
   # PATCH/PUT /fees/1.json
   def update
     respond_to do |format|
-      logger.info("================1")
       if @fee.update(fee_params)
-        logger.info("================2")
         format.html { redirect_to @fee, notice: t('Fee was successfully updated.') }
         format.json { render :show, status: :ok, location: @fee }
       else
@@ -94,7 +93,7 @@ class FeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fee_params
-      params.require(:fee).permit(:begin_date, :end_date, :income_amount, :fee_amount, :part_amount1, :percent1, :part_amount2, :percent2,incomes_attributes: [:id, :fee_id, :fee_amount, :fee_extracted])
+      params.require(:fee).permit(:begin_date, :end_date, :income_amount, :fee_amount, :part_amount1, :percent1, :part_amount2, :percent2, fee_details: [:id, :fee_amount, :_destroy])
     end
 
     def updateIncomes

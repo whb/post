@@ -55,10 +55,13 @@ rails generate migration DropFeeDetailsTable
 rails generate migration AddFeeColumnToIncomes
 rails generate migration AddExtractFeeFlagColumnToIncomes
 
+rails generate model FeeDetail fee:references income:references 'fee_amount:decimal{10,2}'
+
+
+
 
 
 
 rails generate model revenue income:references date:date 'amount:decimal{10,2}'
-
 rails generate model payment cost:references date:date 'amount:decimal{10,2}'
 ```
