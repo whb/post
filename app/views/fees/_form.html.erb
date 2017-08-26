@@ -61,7 +61,7 @@
       <th><%= Income.human_attribute_name(:actual_amount) %></th>
       <th><%= Income.human_attribute_name(:cost_amount) %></th>
       <th><%= Income.human_attribute_name(:actual_cost_amount) %></th>
-      <th><%= Income.human_attribute_name(:fee_amount) %></th>
+      <th style="width:230px"><%= Income.human_attribute_name(:fee_amount) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -119,12 +119,12 @@ function sumIncomeAmount() {
 
 ;NestedAttr = {
   inputs_template : 
-    '￥<input type="hidden" name="fee[fee_details_attributes][0][id]" id="fee_fee_details_attributes_0_id"> \
-    <input type="hidden" value="INCOME_ID" name="fee[fee_details_attributes][0][income_id]" id="fee_fee_details_attributes_0_income_id"> \
-    <input type="number" name="fee[fee_details_attributes][0][fee_amount]" id="fee_fee_details_attributes_0_fee_amount">',
+    '￥<input type="hidden" value="FEE_ID" name="fee[fee_details_attributes][INDEX][id]" id="fee_fee_details_attributes_INDEX_id">' +
+    '<input type="hidden" value="INCOME_ID" name="fee[fee_details_attributes][INDEX][income_id]" id="fee_fee_details_attributes_INDEX_income_id">' +
+    '<input type="number" name="fee[fee_details_attributes][INDEX][fee_amount]" id="fee_fee_details_attributes_INDEX_fee_amount">',
   
   destroy_template :
-    '<input type="hidden" value="1" name="fee[fee_details_attributes][0][_destroy]">',
+    '<input type="hidden" value="1" name="fee[fee_details_attributes][INDEX][_destroy]">',
 
   get_next_attributes_count : function() {
     var max_index = -1;
@@ -136,15 +136,21 @@ function sumIncomeAmount() {
   },
 
   fee_detail_inputs : function(income_id) {
-    return this.inputs_template.replace(/0/g, this.get_next_attributes_count()).replace(/INCOME_ID/g, income_id);
+    var id_input = $("#tr_" + income_id).find("input[name^='fee[fee_details_attributes]'][name$='[id]']");
+    var id_value = "";
+    if(id_input && id_input.val()) {
+      id_value = id_input.val();
+    }
+    return this.inputs_template.replace(/INDEX/g, this.get_next_attributes_count())
+      .replace(/INCOME_ID/g, income_id).replace(/FEE_ID/g, id_value);
   },
 
   destroy_flag : function(income_id) {
     var id_input = $("#tr_" + income_id).find("input[name^='fee[fee_details_attributes]'][name$='[id]']");
-    var index = parseInt(id_input.attr("name").match(/\d+/)[0]);
     var id_value = id_input.val();
+    var index = parseInt(id_input.attr("name").match(/\d+/)[0]);
     if(id_value) {
-      return id_input.prop('outerHTML') + this.destroy_template.replace(/0/g, index);
+      return id_input.prop('outerHTML') + this.destroy_template.replace(/INDEX/g, index);
     } else {
       return "";
     }
