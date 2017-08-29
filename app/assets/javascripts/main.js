@@ -52,6 +52,9 @@ function toggle(switch_element) {
     }
 }
 
+function parseNumber(value) {
+  return Number(value) ? Number(value) : 0;
+}
 
 function formatMoneyInTable() {
   $("td.money").each(function() {
@@ -79,6 +82,21 @@ function sumAndFormat(amounts) {
     sum += amount;
   });
   return accounting.format(sum);
+}
+
+function changeClassToDanger(ele) {
+  if(ele.prop('tagName').toUpperCase() == "INPUT") {
+    ele = ele.parent("td");
+  }
+  ele.removeClass("success");
+  ele.addClass("danger");
+}
+
+function changeClassToSuccess(ele) {
+  if(ele.prop('tagName').toUpperCase() == "INPUT")
+    ele = ele.parent("td");
+  ele.removeClass("danger");
+  ele.addClass("success");
 }
 
 $(document).ready(function(){

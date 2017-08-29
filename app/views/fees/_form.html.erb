@@ -29,14 +29,14 @@
     <tr>
       <td>1</td>
       <td>￥<%= f.input_field :part_amount1 %><%= f.error :part_amount1 %></td>
-      <td><%= f.input_field :percent1 %><%= f.error :percent1 %></td>
-      <td></td>
+      <td><%= f.input_field :percent1, class: 'percent' %>%<%= f.error :percent1 %></td>
+      <td id="fee_part1"></td>
     </tr>
     <tr>
       <td>2</td>
       <td>￥<%= f.input_field :part_amount2 %></td>
-      <td><%= f.input_field :percent2 %></td>
-      <td></td>
+      <td><%= f.input_field :percent2, class: 'percent' %>%</td>
+      <td id="fee_part2"></td>
     </tr>
   </tbody>
   <tfoot>
@@ -93,30 +93,6 @@
 
 
 <script type="text/javascript">
-$("#searchButton").click(function(){
-  var params = {};
-  params['begin_date'] = $('#fee_begin_date').val();
-  params['end_date'] = $('#fee_end_date').val();
-  location.href =  location.href + "?" + $.param(params);
-});
-
-$(".fee_incomes_id").click(function(){
-  sumIncomeAmount();
-});
-
-function sumIncomeAmount() {
-  var sum = 0;
-  $(".income_tr").each(function() {
-    var tr = $(this);
-    if(tr.find(".fee_incomes_id").is(':checked')) {
-      amount = parseCurrency(tr.find(".income_amount"));
-      sum += amount;
-    }
-  });
-
-  $("#income_sum").html(accounting.format(sum));
-}
-
 ;NestedAttr = {
   inputs_template : 
     '￥<input type="hidden" value="FEE_ID" name="fee[fee_details_attributes][INDEX][id]" id="fee_fee_details_attributes_INDEX_id">' +
@@ -155,19 +131,89 @@ function sumIncomeAmount() {
       return "";
     }
   },
+
+  add_or_destroy_fee_detail_input : function(check_box) {
+    income_id = check_box.val();
+    td = $("#fee_detail_" + income_id);
+
+    if(check_box.is(':checked')) {
+      td.html(this.fee_detail_inputs(income_id));
+    } else {
+      td.html(this.destroy_flag(income_id));
+    }
+  }
+}
+
+;CalculateValidator = {
+  check_income_amount : function() {
+    var sum = 0;
+    $("input[name^='fee[part_amount']").each(function() {
+      part_amount = Number($(this).val());
+      if(part_amount)
+        sum += part_amount;
+    }); 
+    
+    return sum == parseCurrency($("#income_sum"));
+  },
+
+  validate_income_amount : function() {
+    if(this.check_income_amount()) {
+      changeClassToSuccess($("#income_sum"));
+      changeClassToSuccess($("input[name^='fee[part_amount']"));
+    } else {
+      changeClassToDanger($("#income_sum"));
+      changeClassToDanger($("input[name^='fee[part_amount']"));
+    }
+  },
+
+  calculate_fee : function() {
+    part_amount1 = parseNumber($("input[name='fee[part_amount1]']").val());
+    percent1 = parseNumber($("input[name='fee[percent1]']").val());
+    fee_part1 = part_amount1*percent1/100;
+    $("#fee_part1").html(accounting.formatMoney(fee_part1));
+    part_amount2 = parseNumber($("input[name='fee[part_amount2]']").val());
+    percent2 = parseNumber($("input[name='fee[percent2]']").val());
+    fee_part2 = part_amount2*percent2/100;
+    $("#fee_part2").html(accounting.formatMoney(fee_part2));
+
+    $("#fee_amount").html(accounting.formatMoney(fee_part1 + fee_part2));
+  },
+}
+
+$("#searchButton").click(function(){
+  var params = {};
+  params['begin_date'] = $('#fee_begin_date').val();
+  params['end_date'] = $('#fee_end_date').val();
+  location.href =  location.href + "?" + $.param(params);
+});
+
+function sumIncomeAmount() {
+  var sum = 0;
+  $(".income_tr").each(function() {
+    var tr = $(this);
+    if(tr.find("input[name='add_fee_detail']").is(':checked')) {
+      amount = parseCurrency(tr.find(".income_amount"));
+      sum += amount;
+    }
+  });
+
+  $("#income_sum").html(accounting.formatMoney(sum));
 }
 
 $("input[name='add_fee_detail']").click(function(){
-  income_id = $(this).val();
-  td = $("#fee_detail_" + income_id);
-
-  if($(this).is(':checked')) {
-    td.html(NestedAttr.fee_detail_inputs(income_id));
-  } else {
-    td.html(NestedAttr.destroy_flag(income_id));
-  }
-  
+  NestedAttr.add_or_destroy_fee_detail_input($(this));
+  sumIncomeAmount();
+  CalculateValidator.validate_income_amount();
 });
+
+$("input[name^='fee[part_amount']").change(function() {
+     CalculateValidator.validate_income_amount();
+     CalculateValidator.calculate_fee();
+}); 
+
+$("input[name^='fee[percent']").change(function() {
+     CalculateValidator.calculate_fee();
+}); 
 
 $(document).ready(function(){
   sumIncomeAmount();

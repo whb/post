@@ -75,16 +75,6 @@ function summary_costs() {
   $("#unpaid_sum").html(sumAndFormat($(".unpaid_amount")));
 }
 
-function changeClassToDanger(ele) {
-  ele.removeClass("success");
-  ele.addClass("danger");
-}
-
-function changeClassToSuccess(ele) {
-  ele.removeClass("danger");
-  ele.addClass("success");
-}
-
 function mark_overflow(sum_object, available_object) {
   sum = parseCurrency(sum_object);
   available_amount = parseCurrency(available_object);
