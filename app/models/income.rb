@@ -1,5 +1,4 @@
 class Income < ApplicationRecord
-  before_save :setup_fee
   DISCOUNT_RATE = 1
   TAX_RATE = {"6%" => 6, "11%" => 11}
   belongs_to :payer
@@ -12,8 +11,20 @@ class Income < ApplicationRecord
     Income.where(bill_date: range).where.not(id: FeeDetail.select(:income_id))
   end
 
+  def self.generate_code() 
+    short_year = Time.now.year.to_s[2,2]
+    max_code = Income.maximum("code")
+    if max_code 
+      num = max_code[3..-1].to_i
+      return ("P" + short_year +"%.6d") % (num + 1)
+    else 
+      return ("P" + short_year +"%.6d") % (1)
+    end
+  end
+
   def self.new_blank()
     income = Income.new
+    income.code = generate_code();
     income.bill_date  = Time.now.to_date
     income.discount_rate = DISCOUNT_RATE
     income
@@ -25,27 +36,6 @@ class Income < ApplicationRecord
 
   def actual_available_amount
     return actual_amount ? actual_amount * 0.99 : 0.00
-  end
-
-  def selected=(var)
-    @selected = var
-    if @selected == 0
-      self.fee_amount = nil
-      self.fee = nil
-    end
-  end
-
-  def selected
-    @selected
-  end
-
-  def setup_fee
-    logger.info("================3")
-    if selected == 0
-      fee_amount = nil
-      fee = nil
-      logger.info("================4")
-    end
   end
 
 end

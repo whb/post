@@ -130,6 +130,7 @@ zh-CN:
   Income was successfully created: 运输收入保存成功
   Income was successfully updated: 运输收入更新成功
   Income was successfully committed: 运输收入提交成功
+  Income was successfully destroyed: 运输收入删除成功
   Cost was successfully created: 运输支出保存成功
   Cost was successfully updated: 运输支出更新成功
   Cost was successfully committed: 运输支出提交成功
