@@ -90,6 +90,15 @@ zh-CN:
       title: 运输支出列表
     reference:
       summary: 合计
+  fees:
+    index:
+      title: 管理费用列表
+    form:
+      sn: 序号
+      income_amount: 应收金额
+      percent: 百分比例
+      fee: 管理费用
+      summary: 合计
   payers:
     index:
         title: 客户列表

@@ -7,6 +7,9 @@ zh-CN:
       cost: 
         one: 运输支出
         other: 运输支出列表
+      fee: 
+        one: 管理费用
+        other: 管理费用列表
       payer: 客户
       payee: 承运商
       organization: 组织机构
@@ -30,6 +33,9 @@ zh-CN:
         available_amount: 可支付运费金额
         actual_date: 实收日期
         actual_amount: 实收金额
+        cost_amount: 应支付金额
+        actual_cost_amount: 已支付金额
+        fee_amount: 管理费用
         created_at: 创建时间
         status: 状态
       cost:
@@ -47,6 +53,15 @@ zh-CN:
         unpaid_amount: 未支付金额
         created_at: 创建时间
         status: 状态
+      fee:
+        begin_date: 开始日期
+        end_date: 结束日期
+        income_amount: 应收金额
+        fee_amount: 管理费用
+        part_amount1: 应收金额1
+        percent1: 提取比例1
+        part_amount2: 应收金额2
+        percent2: 提取比例2
       payer:
         code: 编号
         name: 名称

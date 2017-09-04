@@ -1,41 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Fees</h1>
-
-<table>
+<%- model_class = Fee -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped table-bordered table-hover datatable">
   <thead>
     <tr>
-      <th>Begin date</th>
-      <th>End date</th>
-      <th>Income amount</th>
-      <th>Fee amount</th>
-      <th>Part amount1</th>
-      <th>Percent1</th>
-      <th>Part amount2</th>
-      <th>Percent2</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:begin_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:income_amount) %></th>
+      <th><%= model_class.human_attribute_name(:fee_amount) %></th>
+      <th><%= model_class.human_attribute_name(:part_amount1) %></th>
+      <th><%= model_class.human_attribute_name(:percent1) %></th>
+      <th><%= model_class.human_attribute_name(:part_amount2) %></th>
+      <th><%= model_class.human_attribute_name(:percent2) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @fees.each do |fee| %>
-      <tr>
-        <td><%= fee.begin_date %></td>
+      <tr class="clickableRow">
+        <td><%= link_to fee.begin_date, fee_path(fee.id) %></td>
         <td><%= fee.end_date %></td>
-        <td><%= fee.income_amount %></td>
-        <td><%= fee.fee_amount %></td>
-        <td><%= fee.part_amount1 %></td>
+        <td class="money"><%= fee.income_amount %></td>
+        <td class="money"><%= fee.fee_amount %></td>
+        <td class="money"><%= fee.part_amount1 %></td>
         <td><%= fee.percent1 %></td>
-        <td><%= fee.part_amount2 %></td>
+        <td class="money"><%= fee.part_amount2 %></td>
         <td><%= fee.percent2 %></td>
-        <td><%= link_to 'Show', fee %></td>
-        <td><%= link_to 'Edit', edit_fee_path(fee) %></td>
-        <td><%= link_to 'Destroy', fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_fee_path(fee), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      fee_path(fee),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Fee', new_fee_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_fee_path,
+            :class => 'btn btn-primary' %>
