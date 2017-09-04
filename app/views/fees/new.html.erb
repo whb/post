@@ -2,4 +2,4 @@
   <h1><%=t '.title', :default => Fee.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<%= render 'form', fee: @fee %>
+<%= render 'form', fee: @fee, action: 'new'  %>

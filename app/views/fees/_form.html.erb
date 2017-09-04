@@ -1,6 +1,8 @@
 <%= simple_form_for @fee, html: { class: 'form-horizontal' },
   wrapper: :horizontal_form do |f| %>
   <%= f.error_notification %> 
+
+  <% if action == 'edit' %><div class="well"><% end %>
   <div class="row">
     <div class="col-md-5">
       <%= f.input :begin_date, as: :datepicker %>
@@ -12,6 +14,7 @@
       <input id="searchButton" class="btn btn-default" type="button" value="<%= t('Search') %>">
     </div>
   </div>
+  <% if action == 'edit' %></div><% end %>
 
 
 <div class="row">
