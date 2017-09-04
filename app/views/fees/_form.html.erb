@@ -2,19 +2,28 @@
   wrapper: :horizontal_form do |f| %>
   <%= f.error_notification %> 
 
-  <% if action == 'edit' %><div class="well"><% end %>
-  <div class="row">
-    <div class="col-md-5">
-      <%= f.input :begin_date, as: :datepicker %>
+  <% if action == 'new' %>
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.input :begin_date, as: :datepicker %>
+      </div>
+      <div class="col-md-5">
+        <%= f.input :end_date, as: :datepicker  %>
+      </div>
+      <div class="col-md-2">
+        <input id="searchButton" class="btn btn-default" type="button" value="<%= t('Search') %>">
+      </div>
     </div>
-    <div class="col-md-5">
-      <%= f.input :end_date, as: :datepicker  %>
+  <% else %>
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.input :begin_date, as: :datepicker, input_html: { readonly: 'readonly' } %>
+      </div>
+      <div class="col-md-5">
+        <%= f.input :end_date, as: :datepicker, input_html: { readonly: 'readonly' } %>
+      </div>
     </div>
-    <div class="col-md-2">
-      <input id="searchButton" class="btn btn-default" type="button" value="<%= t('Search') %>">
-    </div>
-  </div>
-  <% if action == 'edit' %></div><% end %>
+  <% end %>
 
 
 <div class="row">
@@ -306,5 +315,6 @@ $('form').on('submit', function() {
 $(document).ready(function(){
   CalculateValidator.sum_income_amount();
   CalculateValidator.calculate_fee();
+  CalculateValidator.validate_form();
 });
 </script>
