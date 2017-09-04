@@ -55,7 +55,7 @@
     <tr>
       <th><%= t(".summary") %></th>
       <td class="money" id="income_sum"></td>
-      <td></td>
+      <td><%= f.hidden_field :income_amount %><%= f.hidden_field :fee_amount %></td>
       <td class="money" id="fee_amount"></td>
     </tr>
   </tfoot>
@@ -185,6 +185,7 @@
     });
 
     $("#income_sum").html(accounting.formatMoney(sum));
+    $("#fee_income_amount").val(sum);
   },
 
   check_income_amount : function() {
@@ -220,6 +221,7 @@
     $("#fee_part2").html(accounting.formatMoney(fee_part2));
 
     $("#fee_amount").html(accounting.formatMoney(fee_part1 + fee_part2));
+    $("#fee_fee_amount").val(fee_part1 + fee_part2);
 
     this.validate_fee();
     this.validate_fee_details();

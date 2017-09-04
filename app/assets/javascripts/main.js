@@ -58,7 +58,17 @@ function parseNumber(value) {
 
 function formatMoneyInTable() {
   $("td.money").each(function() {
-    $(this).html(accounting.formatMoney($(this).html()));
+    var money = $(this).html();
+    if(money)
+      $(this).html(accounting.formatMoney(money));
+  });
+}
+
+function formatPecentInTable() {
+  $("td.pecent").each(function() {
+    var pecent = $(this).html();
+    if(pecent)
+      $(this).html(pecent + "%");
   });
 }
 
@@ -111,6 +121,7 @@ $(document).ready(function(){
     $('.well').find('input, textarea, select').attr('disabled','true');
 
     formatMoneyInTable();
+    formatPecentInTable();
 
     $(".toggle_display").hide();
     $('.toggle_switch').click(function(){
