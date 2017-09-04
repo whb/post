@@ -7,6 +7,11 @@ class Income < ApplicationRecord
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
 
+
+  def self.fee_candidate(range)
+    Income.where(bill_date: range).where.not(id: FeeDetail.select(:income_id))
+  end
+
   def self.new_blank()
     income = Income.new
     income.bill_date  = Time.now.to_date
