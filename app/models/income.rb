@@ -14,11 +14,11 @@ class Income < ApplicationRecord
   def self.generate_code() 
     short_year = Time.now.year.to_s[2,2]
     max_code = Income.maximum("code")
-    if max_code 
+    if max_code && max_code.include?("P#{short_year}")
       num = max_code[3..-1].to_i
-      return ("P" + short_year +"%.6d") % (num + 1)
+      return ("P#{short_year}%.6d") % (num + 1)
     else 
-      return ("P" + short_year +"%.6d") % (1)
+      return ("P#{short_year}%.6d") % (1)
     end
   end
 
