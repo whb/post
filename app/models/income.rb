@@ -3,6 +3,7 @@ class Income < ApplicationRecord
   TAX_RATE = {"6%" => 6, "11%" => 11}
   belongs_to :payer
   has_many :costs
+  has_many :fee_details
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
 
@@ -31,11 +32,15 @@ class Income < ApplicationRecord
   end
 
   def income_available_amount
-    return income_amount ? income_amount * 0.99 : 0.00
+    return 0.00 unless income_amount
+    fee_detail = self.fee_details.first
+    fee_amount = fee_detail ? fee_detail.fee_amount : 0.00
+    return @income_available_amount ||= income_amount - fee_amount
   end
 
   def actual_available_amount
-    return actual_amount ? actual_amount * 0.99 : 0.00
+    return 0.00 unless actual_amount
+    return [income_available_amount, actual_amount].min
   end
 
 end
