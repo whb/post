@@ -1,7 +1,6 @@
 <%= simple_form_for @fee, html: { class: 'form-horizontal' },
   wrapper: :horizontal_form do |f| %>
   <%= f.error_notification %> 
-
   <% if action == 'new' %>
     <div class="row">
       <div class="col-md-5">
@@ -85,7 +84,7 @@
         <td><%= ff.object.income.bill_date %></td>
         <td class="money income_amount"><%= ff.object.income.income_amount %></td>
         <td class="money"><%= ff.object.income.actual_amount %></td>
-        <td class="money"><%= ff.object.income.cost_amount %></td>
+        <td class="money cost_amount"><%= ff.object.income.cost_amount %></td>
         <td class="money"><%= ff.object.income.actual_cost_amount %></td>
         <td id="fee_detail_<%=ff.object.income.id%>">
           ￥<%= ff.number_field :fee_amount %><%= ff.hidden_field :id %><%= ff.hidden_field :income_id %>
@@ -103,7 +102,7 @@
         <td><%= income.bill_date %></td>
         <td class="money income_amount"><%= income.income_amount %></td>
         <td class="money"><%= income.actual_amount %></td>
-        <td class="money"><%= income.cost_amount %></td>
+        <td class="money cost_amount"><%= income.cost_amount %></td>
         <td class="money"><%= income.actual_cost_amount %></td>
         <td id="fee_detail_<%=income.id%>"></td>
         <td><input type='checkbox' name='add_fee_detail' value='<%= income.id %>'></td>
@@ -277,9 +276,28 @@
     }
     return result;
   },
+  validate_fee_details_available : function() {
+    var result = true;
+    $("input[name^='fee[fee_details_attributes]'][name$='[fee_amount]']").each(function() {
+      detail_amount = Number($(this).val());
+      if(detail_amount) {
+        let income_amount_object = $(this).parents('tr').find('td.income_amount');
+        let income_amount = parseCurrency(income_amount_object);
+        let cost_amount_object = $(this).parents('tr').find('td.cost_amount');
+        let cost_amount = parseCurrency(cost_amount_object);
+        if(detail_amount > income_amount - cost_amount) {
+          result = false;
+          changeClassToDanger(income_amount_object);
+          changeClassToDanger(cost_amount_object);
+          changeClassToDanger($(this));
+        }
+      }
+    }); 
+    return result;
+  },
 
   validate_form : function() {
-     return (this.validate_income_amount() && this.validate_fee() && this.validate_fee_details());
+     return (this.validate_income_amount() && this.validate_fee() && this.validate_fee_details() && this.validate_fee_details_available());
   },
 }
 
@@ -307,6 +325,7 @@ $("input[name^='fee[percent']").change(function() {
 
 $("#fee_details_table tbody").on("change", "input", function() {
   CalculateValidator.validate_fee_details();
+  CalculateValidator.validate_fee_details_available();
 }); 
 
 
