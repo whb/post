@@ -32,10 +32,18 @@ class Income < ApplicationRecord
   end
 
   def feed?
+    @feed ||= cal_feed?
+  end
+
+  def cal_feed?
     self.fee_details.first ? true : false
   end
 
   def fee_amount
+    @fee_amount ||= cal_fee_amount
+  end
+
+  def cal_fee_amount
     fee_detail = self.fee_details.first
     if fee_detail && fee_detail.fee_amount
       return fee_detail.fee_amount
