@@ -17,6 +17,7 @@
     <%= f.input :abstract %>
     <%= f.input :bill_date, as: :datepicker %>
     <%= f.input :account_date, as: :datepicker  %>
+    <%= fee_amount_input_group(income) %>
     </div>
     <div class="col-md-6">
     <%= f.input :income_amount, as: :currency %>

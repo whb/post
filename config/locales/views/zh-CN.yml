@@ -90,6 +90,7 @@ zh-CN:
       title: 运输支出列表
     reference:
       summary: 合计
+
   fees:
     index:
       title: 管理费用列表
@@ -127,6 +128,8 @@ zh-CN:
       title: 祥龙物流费用支出系统
       welcome: 欢迎使用祥龙物流费用支出系统
 
+  feed: 管理费
+  unfeed: 未提管理费
   Income was successfully created: 运输收入保存成功
   Income was successfully updated: 运输收入更新成功
   Income was successfully committed: 运输收入提交成功

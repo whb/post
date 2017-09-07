@@ -8,11 +8,14 @@
       <div class="col-md-4">
         <strong><%= Income.human_attribute_name(:payer) %> : </strong><%= income.payer.name %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <strong><%= Income.human_attribute_name(:income_amount) %> : </strong><%= income.income_amount %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <strong><%= Income.human_attribute_name(:actual_amount) %> : </strong><%= income.actual_amount %>
+      </div>
+      <div class="col-md-2">
+        <%= fee_status(income) %>
         <span class="pull-right toggle_switch fold"><span class="glyphicon glyphicon-chevron-down"></span></span>
       </div>
     </div>

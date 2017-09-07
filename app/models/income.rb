@@ -12,7 +12,7 @@ class Income < ApplicationRecord
     Income.where(bill_date: range).where.not(id: FeeDetail.select(:income_id))
   end
 
-  def self.generate_code() 
+  def self.generate_code
     short_year = Time.now.year.to_s[2,2]
     max_code = Income.maximum("code")
     if max_code && max_code.include?("P#{short_year}")
@@ -23,19 +23,31 @@ class Income < ApplicationRecord
     end
   end
 
-  def self.new_blank()
+  def self.new_blank
     income = Income.new
-    income.code = generate_code();
+    income.code = generate_code;
     income.bill_date  = Time.now.to_date
     income.discount_rate = DISCOUNT_RATE
     income
   end
 
+  def feed?
+    self.fee_details.first ? true : false
+  end
+
+  def fee_amount
+    fee_detail = self.fee_details.first
+    if fee_detail && fee_detail.fee_amount
+      return fee_detail.fee_amount
+    else 
+      return 0.00
+    end
+  end
+
   def income_available_amount
     return 0.00 unless income_amount
-    fee_detail = self.fee_details.first
-    fee_amount = fee_detail ? fee_detail.fee_amount : 0.00
-    return @income_available_amount ||= income_amount - fee_amount
+    return income_amount unless feed?
+    return income_amount - fee_amount
   end
 
   def actual_available_amount
