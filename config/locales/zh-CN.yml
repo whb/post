@@ -106,6 +106,7 @@ zh-CN:
   errors:
     format: "%{attribute}%{message}"
     messages:
+      actual_amount_cannot_be_greater_than_income_amount: 必须小于或等于应收金额
       accepted: 必须是可被接受的
       blank: 不能为空字符
       present: 必须是空白

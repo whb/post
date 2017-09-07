@@ -6,7 +6,12 @@ class Income < ApplicationRecord
   has_many :fee_details
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
+  validate :actual_amount_cannot_be_greater_than_income_amount
 
+  def actual_amount_cannot_be_greater_than_income_amount
+    errors.add(:actual_amount, :actual_amount_cannot_be_greater_than_income_amount) if
+      actual_amount > income_amount
+  end
 
   def self.fee_candidate(range)
     Income.where(bill_date: range).where.not(id: FeeDetail.select(:income_id))
