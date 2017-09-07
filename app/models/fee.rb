@@ -10,5 +10,4 @@ class Fee < ApplicationRecord
     fee.end_date ||= Date.today.prev_month.end_of_month
     fee
   end
-
 end

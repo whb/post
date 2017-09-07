@@ -63,4 +63,11 @@ class Income < ApplicationRecord
     return [income_available_amount, actual_amount].min
   end
 
+  def cost_amount
+    costs.reduce(0.00) { |sum, cost| sum + cost.invoice_amount}
+  end
+
+  def actual_cost_amount
+    costs.reduce(0.00) { |sum, cost| sum + cost.cost_amount}
+  end
 end

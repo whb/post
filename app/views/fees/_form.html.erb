@@ -85,8 +85,8 @@
         <td><%= ff.object.income.bill_date %></td>
         <td class="money income_amount"><%= ff.object.income.income_amount %></td>
         <td class="money"><%= ff.object.income.actual_amount %></td>
-        <td></td>
-        <td></td>
+        <td class="money"><%= ff.object.income.cost_amount %></td>
+        <td class="money"><%= ff.object.income.actual_cost_amount %></td>
         <td id="fee_detail_<%=ff.object.income.id%>">
           ￥<%= ff.number_field :fee_amount %><%= ff.hidden_field :id %><%= ff.hidden_field :income_id %>
         </td>
@@ -103,8 +103,8 @@
         <td><%= income.bill_date %></td>
         <td class="money income_amount"><%= income.income_amount %></td>
         <td class="money"><%= income.actual_amount %></td>
-        <td></td>
-        <td></td>
+        <td class="money"><%= income.cost_amount %></td>
+        <td class="money"><%= income.actual_cost_amount %></td>
         <td id="fee_detail_<%=income.id%>"></td>
         <td><input type='checkbox' name='add_fee_detail' value='<%= income.id %>'></td>
       </tr>
