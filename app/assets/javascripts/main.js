@@ -64,11 +64,11 @@ function formatMoneyInTable() {
   });
 }
 
-function formatPecentInTable() {
-  $("td.pecent").each(function() {
-    var pecent = $(this).html();
-    if(pecent)
-      $(this).html(pecent + "%");
+function formatPercentInTable() {
+  $("td.percent").each(function() {
+    var percent = $(this).html();
+    if(percent)
+      $(this).html(percent + "%");
   });
 }
 
@@ -121,7 +121,7 @@ $(document).ready(function(){
     $('.well').find('input, textarea, select').attr('disabled','true');
 
     formatMoneyInTable();
-    formatPecentInTable();
+    formatPercentInTable();
 
     $(".toggle_display").hide();
     $('.toggle_switch').click(function(){
