@@ -29,14 +29,10 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-    <%= f.input :actual_date, as: :datepicker %>
-    </div>
-    <div class="col-md-6">
-    <%= f.input :actual_amount, as: :currency %>
-    </div>
-  </div>
+<hr>
+  <%= f.simple_fields_for :revenues do |builder| %>
+    <%= render 'revenue_fields', f: builder %>
+  <% end %>
 <% end %>
 </div>
 

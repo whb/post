@@ -31,8 +31,11 @@
   <%= f.simple_fields_for :revenues do |builder| %>
     <%= render 'revenue_fields', f: builder %>
   <% end %>
+
   <div class="pull-right">
-    <%= link_to_add_fields t(".add_revenue"), f, :revenues %>
+    <%= link_to_add_fields(f, :revenues) do %>
+      <span class="glyphicon glyphicon-plus"></span><%= t(".add_revenue") %>
+    <% end %>
   </div>
 
   <div class="form-group">
