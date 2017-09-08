@@ -26,14 +26,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-    <%= f.input :cost_date, as: :datepicker %>
-    </div>
-    <div class="col-md-6">
-    <%= f.input :cost_amount, as: :currency %>
-    </div>
-  </div>
+<hr>
+  <%= f.simple_fields_for :payments do |builder| %>
+    <%= render 'payment_fields', f: builder %>
+  <% end %>
+
+  <div class="pull-right">
+    <%= link_to_add_fields(f, :payments) do %>
+      <span class="glyphicon glyphicon-plus"></span> <%= t(".add_payment") %>
+    <% end %>
+  </div>  
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">
@@ -65,4 +67,21 @@ $("#cost_cost_amount").change(function() {
 $("#cost_payee_id").change(function() {
   $("tr.active .payee").html($("#cost_payee_id option:selected").text());
 });
+
+(function() {
+  $('form').on('click', '.add_fields', function(event) {
+    var regexp, time, new_revence;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    new_revence = $(this).data('fields').replace(regexp, time);
+    $(new_revence).insertBefore($(this).parent()).find('div.input-group.datepicker').datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.glyphicon-remove', function(event) {
+    $(this).prev().val(1);
+    $(this).closest('.row').hide();
+  });
+
+}).call(this);
 </script>

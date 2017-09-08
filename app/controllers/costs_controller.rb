@@ -69,6 +69,7 @@ class CostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cost_params
-      params.require(:cost).permit(:sn, :payee_id, :income_id, :abstract, :invoice_date, :tax_rate, :invoice_amount, :cost_date, :cost_amount, :explain)
+      params.require(:cost).permit(:sn, :payee_id, :income_id, :abstract, :invoice_date, :tax_rate, :invoice_amount, :cost_date, :cost_amount, :explain,
+        payments_attributes: [:id, :date, :amount, :_destroy])
     end
 end

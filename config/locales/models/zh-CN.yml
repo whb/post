@@ -56,6 +56,9 @@ zh-CN:
         unpaid_amount: 未支付金额
         created_at: 创建时间
         status: 状态
+      payment:
+        date: 支付日期
+        amount: 支付金额
       fee:
         begin_date: 开始日期
         end_date: 结束日期

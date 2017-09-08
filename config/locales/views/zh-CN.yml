@@ -91,6 +91,8 @@ zh-CN:
       title: 运输支出列表
     reference:
       summary: 合计
+    form:
+      add_payment: 添加支付
 
   fees:
     index:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908005920) do
+ActiveRecord::Schema.define(version: 20170908140913) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sn"
@@ -102,6 +102,15 @@ ActiveRecord::Schema.define(version: 20170908005920) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "cost_id"
+    t.date     "date"
+    t.decimal  "amount",     precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["cost_id"], name: "index_payments_on_cost_id", using: :btree
+  end
+
   create_table "revenues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "income_id"
     t.date     "date"
@@ -127,5 +136,6 @@ ActiveRecord::Schema.define(version: 20170908005920) do
   add_foreign_key "fee_details", "fees"
   add_foreign_key "fee_details", "incomes"
   add_foreign_key "incomes", "payers"
+  add_foreign_key "payments", "costs"
   add_foreign_key "revenues", "incomes"
 end

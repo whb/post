@@ -1,8 +1,17 @@
 class Cost < ApplicationRecord
   belongs_to :payee
   belongs_to :income
+  has_many :payments, -> { order(:date) }, dependent: :destroy
+  accepts_nested_attributes_for :payments, allow_destroy: true
+
   validates :sn, :payee, :income, :invoice_amount, presence: true
   validates_uniqueness_of :sn
+
+  before_save do
+    self.cost_amount = payments.reduce(0.00) { |sum, payment| sum + payment.amount}
+    new_payment = payments.reduce() { |new_payment, payment| new_payment.date > payment.date ? new_payment : payment}
+    self.cost_date = new_payment.date
+  end
 
   def self.new_blank(income)
     cost = Cost.new
@@ -20,15 +29,4 @@ class Cost < ApplicationRecord
     max_id = Cost.maximum('id') ? Cost.maximum('id') : 0
     "cst-%.6d" % (max_id + 1)
   end
-
-  # def self.generate_sn
-  #   short_year = Time.now.year.to_s[2,2]
-  #   max_code = Cost.maximum("sn")
-  #   if max_code && max_code.include?("C#{short_year}")
-  #     num = max_code[3..-1].to_i
-  #     return ("C#{short_year}%.6d") % (num + 1)
-  #   else 
-  #     return ("C#{short_year}%.6d") % (1)
-  #   end
-  # end
 end

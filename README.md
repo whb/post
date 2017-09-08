@@ -59,9 +59,6 @@ rails generate migration RecreateFeeDetailsTable
 
 rails generate migration DeleteFeeColumnsFromIncomes
 
-
-
 rails generate model revenue income:references date:date 'amount:decimal{10,2}'
-TODO:
 rails generate model payment cost:references date:date 'amount:decimal{10,2}'
 ```
