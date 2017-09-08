@@ -77,7 +77,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= f.fields_for :fee_details do |ff| %>
+    <%= f.simple_fields_for :fee_details do |ff| %>
       <tr class="income_tr" id="tr_<%=ff.object.income.id%>">
         <td><%= ff.object.income.code %></td>
         <td><%= ff.object.income.payer.brief_name %></td>
