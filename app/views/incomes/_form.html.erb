@@ -34,7 +34,7 @@
 
   <div class="pull-right">
     <%= link_to_add_fields(f, :revenues) do %>
-      <span class="glyphicon glyphicon-plus"></span><%= t(".add_revenue") %>
+      <span class="glyphicon glyphicon-plus"></span> <%= t(".add_revenue") %>
     <% end %>
   </div>
 
@@ -63,6 +63,11 @@ $("#income_income_amount").change(function() {
     new_revence = $(this).data('fields').replace(regexp, time);
     $(new_revence).insertBefore($(this).parent()).find('div.input-group.datepicker').datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
     return event.preventDefault();
+  });
+
+  $('form').on('click', '.glyphicon-remove', function(event) {
+    $(this).prev().val(1);
+    $(this).closest('.row').hide();
   });
 
 }).call(this);
