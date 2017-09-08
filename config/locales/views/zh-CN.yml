@@ -75,7 +75,7 @@ zh-CN:
     extract:
       title: 未提取管理费用收入
     form:
-      add_revenue: 添加实收记录
+      add_revenue: 添加实收
 
     expenses_datatable:
       build: 生成支出证明

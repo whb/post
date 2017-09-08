@@ -4,16 +4,27 @@ class Income < ApplicationRecord
   belongs_to :payer
   has_many :costs
   has_many :fee_details
-  has_many :revenues, dependent: :destroy
+  has_many :revenues, -> { order(:date) }, dependent: :destroy
   accepts_nested_attributes_for :revenues, allow_destroy: true
 
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
   validate :actual_amount_cannot_be_greater_than_income_amount
 
+  before_save do
+    self.actual_amount = revenues.reduce(0.00) { |sum, revenue| sum + revenue.amount}
+    new_revenue = revenues.reduce() { |new_revenue, revenue| new_revenue.date > revenue.date ? new_revenue : revenue}
+    self.actual_date = new_revenue.date
+  end
+
   def actual_amount_cannot_be_greater_than_income_amount
-    errors.add(:actual_amount, :actual_amount_cannot_be_greater_than_income_amount) if
-      actual_amount != nil && actual_amount > income_amount
+    actual_amount = revenues.reduce(0.00) { |sum, revenue| sum + (revenue.amount ? revenue.amount : 0)}
+    if actual_amount > income_amount
+      errors.add(:income_amount, :actual_amount_cannot_be_greater_than_income_amount)
+      revenues.each do |r| 
+        r.errors.add(:amount, :actual_amount_cannot_be_greater_than_income_amount)
+      end
+    end
   end
 
   def self.fee_candidate(range)
@@ -76,6 +87,6 @@ class Income < ApplicationRecord
   end
 
   def actual_cost_amount
-    costs.reduce(0.00) { |sum, cost| sum + cost.cost_amount}
+    costs.reduce(0.00) { |sum, cost| sum + (cost.cost_amount ? cost.cost_amount : 0.0)}
   end
 end
