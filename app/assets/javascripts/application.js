@@ -20,7 +20,3 @@
 //= require moment/zh-cn
 // require turbolinks
 //= require_tree .
-
-$(document).on("page:load ready", function(){
-    $("div.datepicker").datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
-});

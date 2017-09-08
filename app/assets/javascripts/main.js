@@ -133,3 +133,7 @@ $(document).ready(function(){
     // auto focus first input EXCEPT expense and reimbursment form
     $(":text:visible:enabled:not([readonly]):first").not("form.disable_auto_focus input").focus();
 });
+
+$(document).on("page:load ready", function(){
+    $("div.datepicker").datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
+});

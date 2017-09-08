@@ -36,7 +36,6 @@ class Income < ApplicationRecord
     income.code = generate_code;
     income.bill_date  = Time.now.to_date
     income.discount_rate = DISCOUNT_RATE
-    1.times { income.revenues.build }
     income
   end
 

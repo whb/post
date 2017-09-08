@@ -27,25 +27,13 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-    <%= f.input :actual_date, as: :datepicker %>
-    </div>
-    <div class="col-md-6">
-    <%= f.input :actual_amount, as: :currency %>
-    </div>
-  </div>
-
-  <%= f.simple_fields_for :revenues do |ff| %>
-    <div class="row">
-      <div class="col-md-6">
-      <%= ff.input :date, as: :datepicker %>
-      </div>
-      <div class="col-md-6">
-      <%= ff.input :amount, as: :currency %>
-      </div>
-    </div>
+<hr>
+  <%= f.simple_fields_for :revenues do |builder| %>
+    <%= render 'revenue_fields', f: builder %>
   <% end %>
+  <div class="pull-right">
+    <%= link_to_add_fields t(".add_revenue"), f, :revenues %>
+  </div>
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">
@@ -63,4 +51,16 @@ $("#income_income_amount").change(function() {
   $("#income_settlement_amount").val(amount);
   $("#income_available_amount").val(available_amount);
 });
+
+(function() {
+  $('form').on('click', '.add_fields', function(event) {
+    var regexp, time, new_revence;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    new_revence = $(this).data('fields').replace(regexp, time);
+    $(new_revence).insertBefore($(this).parent()).find('div.input-group.datepicker').datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
+    return event.preventDefault();
+  });
+
+}).call(this);
 </script>

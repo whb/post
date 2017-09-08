@@ -38,6 +38,9 @@ zh-CN:
         fee_amount: 管理费用
         created_at: 创建时间
         status: 状态
+      revenue:
+        date: 实收日期
+        amount: 实收金额
       cost:
         sn: 单据编号
         abstract: 账单摘要
