@@ -4,13 +4,16 @@ class Income < ApplicationRecord
   belongs_to :payer
   has_many :costs
   has_many :fee_details
+  has_many :revenues, dependent: :destroy
+  accepts_nested_attributes_for :revenues, allow_destroy: true
+
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
   validate :actual_amount_cannot_be_greater_than_income_amount
 
   def actual_amount_cannot_be_greater_than_income_amount
     errors.add(:actual_amount, :actual_amount_cannot_be_greater_than_income_amount) if
-      actual_amount > income_amount
+      actual_amount != nil && actual_amount > income_amount
   end
 
   def self.fee_candidate(range)
@@ -33,6 +36,7 @@ class Income < ApplicationRecord
     income.code = generate_code;
     income.bill_date  = Time.now.to_date
     income.discount_rate = DISCOUNT_RATE
+    1.times { income.revenues.build }
     income
   end
 

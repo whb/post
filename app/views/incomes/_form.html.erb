@@ -36,6 +36,17 @@
     </div>
   </div>
 
+  <%= f.fields_for :revenues do |ff| %>
+    <div class="row">
+      <div class="col-md-6">
+      <%= ff.input :date, as: :datepicker %>
+      </div>
+      <div class="col-md-6">
+      <%= ff.input :amount, as: :currency %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">
     <%= f.button :submit, class: 'btn-primary' %>

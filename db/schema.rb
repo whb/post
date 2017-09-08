@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825061045) do
+ActiveRecord::Schema.define(version: 20170908005920) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sn"
@@ -71,9 +71,6 @@ ActiveRecord::Schema.define(version: 20170825061045) do
     t.datetime "updated_at",                                 null: false
     t.decimal  "actual_amount",     precision: 10, scale: 2
     t.date     "actual_date"
-    t.integer  "fee_id"
-    t.decimal  "fee_amount",        precision: 10, scale: 2
-    t.boolean  "fee_extracted"
     t.index ["code"], name: "index_incomes_on_code", using: :btree
     t.index ["payer_id"], name: "index_incomes_on_payer_id", using: :btree
   end
@@ -105,6 +102,15 @@ ActiveRecord::Schema.define(version: 20170825061045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "revenues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "income_id"
+    t.date     "date"
+    t.decimal  "amount",     precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["income_id"], name: "index_revenues_on_income_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
     t.string   "displayname"
@@ -121,4 +127,5 @@ ActiveRecord::Schema.define(version: 20170825061045) do
   add_foreign_key "fee_details", "fees"
   add_foreign_key "fee_details", "incomes"
   add_foreign_key "incomes", "payers"
+  add_foreign_key "revenues", "incomes"
 end

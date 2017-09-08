@@ -81,7 +81,8 @@ class IncomesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
-      params.require(:income).permit(:fee_amount, :code, :payer_id, :abstract, :bill_date, :account_date, :income_amount, :settlement_amount, :invoice_date, :invoice_num, :tax_rate, :explain, :discount_rate, :available_amount, :actual_amount, :actual_date)
+      params.require(:income).permit(:fee_amount, :code, :payer_id, :abstract, :bill_date, :account_date, :income_amount, :settlement_amount, :invoice_date, :invoice_num, :tax_rate, :explain, :discount_rate, :available_amount, :actual_amount, :actual_date, 
+          revenues_attributes: [:id, :date, :amount, :_destroy])
     end
 
     def peroid_params
