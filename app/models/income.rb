@@ -5,20 +5,18 @@ class Income < ApplicationRecord
   has_many :costs
   has_many :fee_details
   has_many :revenues, -> { order(:date) }, dependent: :destroy
-  accepts_nested_attributes_for :revenues, allow_destroy: true
+  accepts_nested_attributes_for :revenues, allow_destroy: true, reject_if: :all_blank
 
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
   validate :actual_amount_cannot_be_greater_than_income_amount
 
-  before_save do
-    self.actual_amount = revenues.reduce(0.00) { |sum, revenue| sum + revenue.amount}
-    new_revenue = revenues.reduce() { |new_revenue, revenue| new_revenue.date > revenue.date ? new_revenue : revenue}
-    self.actual_date = new_revenue.date
+  before_validation do
+    self.actual_amount = revenues.reject{|r| r.marked_for_destruction?}.map(&:amount).compact.sum
+    self.actual_date = revenues.reject{|r| r.marked_for_destruction?}.map(&:date).compact.max
   end
 
   def actual_amount_cannot_be_greater_than_income_amount
-    actual_amount = revenues.reduce(0.00) { |sum, revenue| sum + (revenue.amount ? revenue.amount : 0)}
     if actual_amount > income_amount
       errors.add(:income_amount, :actual_amount_cannot_be_greater_than_income_amount)
       revenues.each do |r| 
