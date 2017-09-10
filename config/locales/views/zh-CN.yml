@@ -107,6 +107,12 @@ zh-CN:
       percent: 百分比例
       fee: 管理费用
       summary: 合计
+    readonly_form:
+      sn: 序号
+      income_amount: 应收金额
+      percent: 百分比例
+      fee: 管理费用
+      summary: 合计
   payers:
     index:
         title: 客户列表

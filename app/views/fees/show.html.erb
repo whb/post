@@ -1,44 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Fee -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Begin date:</strong>
-  <%= @fee.begin_date %>
-</p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @fee.end_date %>
-</p>
+<%= render 'readonly_form', fee: @fee %>
 
-<p>
-  <strong>Income amount:</strong>
-  <%= @fee.income_amount %>
-</p>
-
-<p>
-  <strong>Fee amount:</strong>
-  <%= @fee.fee_amount %>
-</p>
-
-<p>
-  <strong>Part amount1:</strong>
-  <%= @fee.part_amount1 %>
-</p>
-
-<p>
-  <strong>Percent1:</strong>
-  <%= @fee.percent1 %>
-</p>
-
-<p>
-  <strong>Part amount2:</strong>
-  <%= @fee.part_amount2 %>
-</p>
-
-<p>
-  <strong>Percent2:</strong>
-  <%= @fee.percent2 %>
-</p>
-
-<%= link_to 'Edit', edit_fee_path(@fee) %> |
-<%= link_to 'Back', fees_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              fees_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_fee_path(@fee), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              fee_path(@fee),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
