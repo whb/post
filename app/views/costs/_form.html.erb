@@ -28,11 +28,11 @@
 
 <hr>
   <%= f.simple_fields_for :payments do |builder| %>
-    <%= render 'payment_fields', f: builder %>
+    <%= render 'costs/payment_fields', f: builder %>
   <% end %>
 
   <div class="pull-right">
-    <%= link_to_add_fields(f, :payments) do %>
+    <%= link_to_add_fields(f, :payments, 'costs') do %>
       <span class="glyphicon glyphicon-plus"></span> <%= t(".add_payment") %>
     <% end %>
   </div>  

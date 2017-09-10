@@ -5,7 +5,7 @@ class Income < ApplicationRecord
   has_many :costs
   has_many :fee_details
   has_many :revenues, -> { order(:date) }, dependent: :destroy
-  accepts_nested_attributes_for :revenues, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :revenues, allow_destroy: true
 
   validates :code, :payer, :bill_date, :income_amount, presence: true
   validates_uniqueness_of :code
