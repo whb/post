@@ -76,6 +76,8 @@ zh-CN:
       title: 未提取管理费用收入
     form:
       add_revenue: 添加实收
+    revenue_fields:
+      remove_revenue: 删除实收
 
     expenses_datatable:
       build: 生成支出证明
@@ -93,6 +95,8 @@ zh-CN:
       summary: 合计
     form:
       add_payment: 添加支付
+    payment_fields:
+      remove_payment: 删除支付
 
   fees:
     index:

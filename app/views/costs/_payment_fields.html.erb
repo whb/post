@@ -5,6 +5,7 @@
   </div>
   <div class="col-md-6">
   <%= f.input :amount, as: :currency %>
-  <%= f.hidden_field :_destroy %><span class="glyphicon glyphicon-remove"></span>
+  <%= f.hidden_field :_destroy %>
+  <span class="glyphicon glyphicon-remove" title="<%=t('.remove_payment')%>"></span>
   </div>
 </div>
