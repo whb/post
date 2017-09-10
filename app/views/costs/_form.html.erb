@@ -30,12 +30,12 @@
   <%= f.simple_fields_for :payments do |builder| %>
     <%= render 'costs/payment_fields', f: builder %>
   <% end %>
-
   <div class="pull-right">
     <%= link_to_add_fields(f, :payments, 'costs') do %>
       <span class="glyphicon glyphicon-plus"></span> <%= t(".add_payment") %>
     <% end %>
   </div>  
+
 
   <div class="form-group">
   <div class="col-sm-offset-3 col-sm-9">
@@ -48,8 +48,15 @@
 
 <script type="text/javascript">
 function recalucate3amount() {
-  invoice_amount = $("#cost_invoice_amount").val();
-  cost_amount = $("#cost_cost_amount").val();
+  var invoice_amount = $("#cost_invoice_amount").val();
+  var cost_amount = 0;
+  $("input[name^='cost[payments_attributes]'][name$='[amount]']").each(function() {
+    var detail_amount = Number($(this).val());
+    if(detail_amount)
+      cost_amount += detail_amount;
+  }); 
+
+
   $("tr.active .invoice_amount").html(invoice_amount);
   $("tr.active .cost_amount").html(cost_amount);
   $("tr.active .unpaid_amount").html(invoice_amount - cost_amount);
@@ -57,10 +64,6 @@ function recalucate3amount() {
 }
 
 $("#cost_invoice_amount").change(function() {
-  recalucate3amount();
-});
-
-$("#cost_cost_amount").change(function() {
   recalucate3amount();
 });
 
@@ -81,6 +84,10 @@ $("#cost_payee_id").change(function() {
   $('form').on('click', '.glyphicon-remove', function(event) {
     $(this).prev().val(1);
     $(this).closest('.row').hide();
+  });
+
+  $('form').on('change', "input[name^='cost[payments_attributes]'][name$='[amount]']", function(event) {
+    recalucate3amount();
   });
 
 }).call(this);
