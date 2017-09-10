@@ -4,6 +4,10 @@ class IncomesController < ApplicationController
   # GET /incomes
   # GET /incomes.json
   def index
+    @incomes = Income.where(status: [:active, :revenued])
+  end
+
+  def all
     @incomes = Income.all
   end
 
@@ -65,12 +69,6 @@ class IncomesController < ApplicationController
   def pay
     @cost = Cost.new_blank(@income)
     render "costs/new"
-  end
-
-  # GET /incomes/extract
-  def extract
-    @peroid =  params.has_key?(:peroid) ? Peroid.new(peroid_params) : Peroid.new({begin: Date.today.prev_month.beginning_of_month, end: Date.today.prev_month.end_of_month})
-    @incomes = Income.where(:bill_date => @peroid.range)
   end
 
   private

@@ -1,4 +1,13 @@
 zh-CN:
+  income_status:
+    active:   新建
+    revenued:  实收完成
+    paid: 分配完成
+    archived: 付清
+  cost_status:
+    active:   新建
+    paid: 付清
+
   activerecord:
     models:
       income: 

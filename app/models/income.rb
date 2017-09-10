@@ -1,6 +1,6 @@
 class Income < ApplicationRecord
-  DISCOUNT_RATE = 1
   TAX_RATE = {"6%" => 6, "11%" => 11}
+  enum status: [ :active, :revenued, :paid, :archived ]
   belongs_to :payer
   has_many :costs
   has_many :fee_details
@@ -14,6 +14,18 @@ class Income < ApplicationRecord
   before_validation do
     self.actual_amount = revenues.reject{|r| r.marked_for_destruction?}.map(&:amount).compact.sum
     self.actual_date = revenues.reject{|r| r.marked_for_destruction?}.map(&:date).compact.max
+  end
+
+  before_save do
+    if income_amount == actual_amount && income_amount == cost_amount + fee_amount && cost_amount == actual_cost_amount
+      self.status = :archived
+    elsif income_amount == actual_amount && income_amount == cost_amount + fee_amount
+      self.status = :paid
+    elsif income_amount == actual_amount
+      self.status = :revenued
+    else
+      self.status = :active
+    end
   end
 
   def actual_amount_cannot_be_greater_than_income_amount

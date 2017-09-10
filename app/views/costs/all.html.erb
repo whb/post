@@ -1,0 +1,32 @@
+<%- model_class = Cost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped table-bordered table-hover datatable">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:sn) %></th>
+      <th><%= model_class.human_attribute_name(:payee) %></th>
+      <th><%= model_class.human_attribute_name(:income) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_date) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_amount) %></th>
+      <th><%= model_class.human_attribute_name(:cost_date) %></th>
+      <th><%= model_class.human_attribute_name(:cost_amount) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @costs.each do |cost| %>
+      <tr class="clickableRow">
+        <td><%= link_to cost.sn, cost_path(cost.id) %></td>
+        <td><%= cost.payee.brief_name %></td>
+        <td><%= cost.income.code %></td>
+        <td><%= cost.invoice_date %></td>
+        <td class="money"><%= cost.invoice_amount %></td>
+        <td><%= cost.cost_date %></td>
+        <td class="money"><%= cost.cost_amount %></td>
+        <td><%= t "cost_status.#{cost.status}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

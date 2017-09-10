@@ -1,4 +1,5 @@
 class Cost < ApplicationRecord
+  enum status: [ :active, :paid ]
   belongs_to :payee
   belongs_to :income
   has_many :payments, -> { order(:date) }, dependent: :destroy
@@ -10,6 +11,12 @@ class Cost < ApplicationRecord
   before_save do
     self.cost_amount = payments.reject{|r| r.marked_for_destruction?}.map(&:amount).compact.sum
     self.cost_date = payments.reject{|r| r.marked_for_destruction?}.map(&:date).compact.max
+
+    if invoice_amount == cost_amount
+      self.status = :paid
+    else
+      self.status = :active
+    end
   end
 
   def self.new_blank(income)

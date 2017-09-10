@@ -9,6 +9,9 @@ zh-CN:
       Incomes Record: 收入账单记录
       Costs Record: 支出账单记录
       Extract Management Fee: 提取管理费
+      Report and Search: 报表查询
+      All Incomes: 全部运输收入
+      All Costs: 全部运输支出
       Basic Data Admin: 基础数据管理
       Organizations: 组织机构
       Users: 用户列表
@@ -72,8 +75,10 @@ zh-CN:
   incomes:
     index:
       title: 未完结运输收入列表
-    extract:
-      title: 未提取管理费用收入
+    pending:
+      title: 未完结运输收入列表
+    all:
+      title: 全部运输收入列表
     form:
       add_revenue: 添加实收
     revenue_fields:

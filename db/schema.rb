@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908140913) do
+ActiveRecord::Schema.define(version: 20170910115949) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sn"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170908140913) do
     t.string   "explain"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.integer  "status"
     t.index ["income_id"], name: "index_costs_on_income_id", using: :btree
     t.index ["payee_id"], name: "index_costs_on_payee_id", using: :btree
     t.index ["sn"], name: "index_costs_on_sn", using: :btree
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170908140913) do
     t.datetime "updated_at",                                 null: false
     t.decimal  "actual_amount",     precision: 10, scale: 2
     t.date     "actual_date"
+    t.integer  "status"
     t.index ["code"], name: "index_incomes_on_code", using: :btree
     t.index ["payer_id"], name: "index_incomes_on_payer_id", using: :btree
   end

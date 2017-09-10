@@ -14,6 +14,11 @@
         <%= menu_item t(".Extract Management Fee"), fees_path %>
     <% end %>
 
+    <%= drop_down t(".Report and Search") do %>
+        <%= menu_item t(".All Incomes"), all_incomes_path %>
+        <%= menu_item t(".All Costs"), all_costs_path %>
+    <% end %>
+
     <%= drop_down t(".Basic Data Admin") do %>
         <%= menu_item t(".Organizations"), organizations_path %>
         <%= menu_item t(".Users"), users_path %>

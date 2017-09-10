@@ -61,4 +61,7 @@ rails generate migration DeleteFeeColumnsFromIncomes
 
 rails generate model revenue income:references date:date 'amount:decimal{10,2}'
 rails generate model payment cost:references date:date 'amount:decimal{10,2}'
+
+rails generate migration AddStatusColumnToIncomes
+rails generate migration AddStatusColumnToCosts
 ```

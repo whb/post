@@ -4,6 +4,10 @@ class CostsController < ApplicationController
   # GET /costs
   # GET /costs.json
   def index
+    @costs = Cost.active
+  end
+
+  def all
     @costs = Cost.all
   end
 
@@ -28,6 +32,7 @@ class CostsController < ApplicationController
 
     respond_to do |format|
       if @cost.save
+        @cost.income.save
         format.html { redirect_to @cost, notice: t('Cost was successfully created.') }
         format.json { render :show, status: :created, location: @cost }
       else
@@ -42,6 +47,7 @@ class CostsController < ApplicationController
   def update
     respond_to do |format|
       if @cost.update(cost_params)
+        @cost.income.save
         format.html { redirect_to @cost, notice: t('Cost was successfully updated.') }
         format.json { render :show, status: :ok, location: @cost }
       else
