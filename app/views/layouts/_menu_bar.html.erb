@@ -4,26 +4,32 @@
     <%= menu_item t(".Home"), root_path %>
     <%= menu_divider %>
 
-    <% if can? :manage, User %>
-      
-    <% end %>
-    
+    <% if can? :manage, Income %>
     <%= drop_down t(".Income Cost Record") do %>
         <%= menu_item t(".Incomes Record"), incomes_path %>
         <%= menu_item t(".Costs Record"), costs_path %>
         <%= menu_item t(".Extract Management Fee"), fees_path %>
     <% end %>
+    <% end %>
 
+    <% if can? :read, Income %>
     <%= drop_down t(".Report and Search") do %>
         <%= menu_item t(".All Incomes"), all_incomes_path %>
         <%= menu_item t(".All Costs"), all_costs_path %>
     <% end %>
+    <% end %>
 
+    <% if can? :manage, User or can? :manage, Payer %>
     <%= drop_down t(".Basic Data Admin") do %>
+    <% if can? :manage, User %>
         <%= menu_item t(".Organizations"), organizations_path %>
         <%= menu_item t(".Users"), users_path %>
+    <% end %>
+    <% if can? :manage, Payer %>
         <%= menu_item t(".Payers"), payers_path %>
         <%= menu_item t(".Payees"), payees_path %>
+    <% end %>
+    <% end %>
     <% end %>
 
   <% end %>
