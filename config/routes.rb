@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :fees
   resources :costs do
-     get :all, :on => :collection
+     get :query, :on => :collection
   end
   resources :payees
   resources :incomes do
     get :pay, :on => :member
-    get :all, :on => :collection
+    get :query, :on => :collection
   end
   resources :payers
   get "home/index"

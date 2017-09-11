@@ -1,4 +1,6 @@
 class PayeesController < ApplicationController
+  load_and_authorize_resource
+  
   before_action :set_payee, only: [:show, :edit, :update, :destroy]
 
   # GET /payees

@@ -14,8 +14,8 @@
 
     <% if can? :read, Income %>
     <%= drop_down t(".Report and Search") do %>
-        <%= menu_item t(".All Incomes"), all_incomes_path %>
-        <%= menu_item t(".All Costs"), all_costs_path %>
+        <%= menu_item t(".All Incomes"), query_incomes_path %>
+        <%= menu_item t(".All Costs"), query_costs_path %>
     <% end %>
     <% end %>
 

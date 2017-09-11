@@ -1,10 +1,12 @@
 class IncomesController < ApplicationController
+  load_and_authorize_resource
+  
   before_action :set_income, only: [:show, :edit, :update, :destroy, :pay]
   before_filter :remember_last_collections_url
 
   def remember_last_collections_url
     last_collections_url = request.env['HTTP_REFERER'] || incomes_url
-    if [incomes_url, all_incomes_url].include? last_collections_url
+    if [incomes_url, query_incomes_url].include? last_collections_url
       session[:last_income_collection_url] = last_collections_url
     end
   end
@@ -14,7 +16,7 @@ class IncomesController < ApplicationController
     @incomes = Income.where(status: [:active, :revenued])
   end
 
-  def all
+  def query
     @incomes = Income.all
   end
 
