@@ -1,0 +1,70 @@
+<div class="panel panel-info">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= Cost.human_attribute_name(:sn) %></th>
+        <th><%= Cost.human_attribute_name(:payee) %></th>
+        <th><%= Cost.human_attribute_name(:invoice_amount) %></th>
+        <th><%= Cost.human_attribute_name(:paid_amount) %></th>
+        <th><%= Cost.human_attribute_name(:unpaid_amount) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% income.costs.each do |c| %>
+        <tr class="clickableRow">
+          <td><%= link_to c.sn, cost_path(c.id) %></td>
+          <td class="payee"><%= c.payee.brief_name %></td>
+          <td class="money invoice_amount"><%= c.invoice_amount %></td>
+          <td class="money cost_amount"><%= c.cost_amount %></td>
+          <td class="money unpaid_amount"><%= c.unpaid_amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2"><%= t(".summary") %></th>
+        <td class="money" id="invoice_sum"></td>
+        <td class="money" id="cost_sum"></td>
+        <td class="money" id="unpaid_sum"></td>
+      </tr>
+      <tr>
+        <th colspan="2"><%= Income.human_attribute_name(:available_amount) %></th>
+        <td class="money" id="income_available_amount"><%= income.income_available_amount %></td>
+        <td class="money" id="actual_available_amount"><%= income.actual_available_amount %></td>
+        <td> —— </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+
+<script type="text/javascript">
+function summary_costs() {
+  $("#invoice_sum").html(sumAndFormat($(".invoice_amount")));
+  $("#cost_sum").html(sumAndFormat($(".cost_amount")));
+  $("#unpaid_sum").html(sumAndFormat($(".unpaid_amount")));
+}
+
+function mark_overflow(sum_object, available_object) {
+  sum = parseCurrency(sum_object);
+  available_amount = parseCurrency(available_object);
+  if(sum > available_amount) {
+    changeClassToDanger(sum_object);
+    changeClassToDanger(available_object);
+  } else {
+    changeClassToSuccess(sum_object);
+    changeClassToSuccess(available_object);
+  }
+}
+
+function recalucateReference() {
+  summary_costs();
+  mark_overflow($("#invoice_sum"), $("#income_available_amount"));
+  mark_overflow($("#cost_sum"), $("#actual_available_amount"));
+  formatMoneyInTable();
+}
+
+$(document).ready(function(){
+  recalucateReference();
+});
+</script>

@@ -3,14 +3,21 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
+<div class="row">
+<div class="col-sm-offset-10 col-sm-2">
+ <h4 class="pull-right"><%= income_status(@income) %> <%= fee_status(@income) %></h4>
+</div>
+</div>
 
 <%= render 'readonly_form', income: @income %>
+
+<%= render 'ref_costs', income: @income %>
 
 
 <div class="form-group">
 <div class="col-sm-offset-3 col-sm-9">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              incomes_path, :class => 'btn btn-default'  %>
+              session[:last_income_collection_url], :class => 'btn btn-default' %>
 	<%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_income_path(@income), :class => 'btn btn-default' %>
 	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),

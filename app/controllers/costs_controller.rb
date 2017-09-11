@@ -1,6 +1,13 @@
 class CostsController < ApplicationController
   before_action :set_cost, only: [:show, :edit, :update, :destroy]
+  before_filter :remember_last_collections_url
 
+  def remember_last_collections_url
+    last_collections_url = request.env['HTTP_REFERER'] || costs_url
+    if [costs_url, all_costs_url].include? last_collections_url
+      session[:last_cost_collection_url] = last_collections_url
+    end
+  end
   # GET /costs
   # GET /costs.json
   def index

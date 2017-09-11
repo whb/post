@@ -83,6 +83,8 @@ zh-CN:
       add_revenue: 添加实收
     revenue_fields:
       remove_revenue: 删除实收
+    ref_costs:
+      summary: 合计
 
     expenses_datatable:
       build: 生成支出证明
