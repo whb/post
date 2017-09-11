@@ -209,3 +209,7 @@ zh-CN:
       long: "%Y年%b%d日 %H:%M"
       short: "%b%d日 %H:%M"
     pm: 下午
+
+  unauthorized:
+    manage:
+      all: "你没有权限进行该操作。"
