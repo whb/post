@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_authorization_check
-  skip_before_filter :login_required  
+  skip_before_action :login_required  
   
   def new
   end

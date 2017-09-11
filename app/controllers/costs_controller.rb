@@ -2,7 +2,7 @@ class CostsController < ApplicationController
   load_and_authorize_resource
   
   before_action :set_cost, only: [:show, :edit, :update, :destroy]
-  before_filter :remember_last_collections_url
+  before_action :remember_last_collections_url
 
   def remember_last_collections_url
     last_collections_url = request.env['HTTP_REFERER'] || costs_url

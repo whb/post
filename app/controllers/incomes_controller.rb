@@ -2,7 +2,7 @@ class IncomesController < ApplicationController
   load_and_authorize_resource
   
   before_action :set_income, only: [:show, :edit, :update, :destroy, :pay]
-  before_filter :remember_last_collections_url
+  before_action :remember_last_collections_url
 
   def remember_last_collections_url
     last_collections_url = request.env['HTTP_REFERER'] || incomes_url
