@@ -77,7 +77,7 @@ zh-CN:
       title: 未完结运输收入列表
     pending:
       title: 未完结运输收入列表
-    all:
+    query:
       title: 全部运输收入列表
     form:
       add_revenue: 添加实收
@@ -98,6 +98,8 @@ zh-CN:
   costs:
     index:
       title: 运输支出列表
+    query:
+      title: 全部运输支出列表
     reference:
       summary: 合计
     form:
