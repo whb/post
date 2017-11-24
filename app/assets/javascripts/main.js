@@ -95,6 +95,8 @@ function sumAndFormat(amounts) {
 }
 
 function changeClassToDanger(ele) {
+  if(typeof(ele.prop('tagName')) == "undefined") return;
+
   if(ele.prop('tagName').toUpperCase() == "INPUT") {
     ele = ele.parent("td");
   }
@@ -103,6 +105,8 @@ function changeClassToDanger(ele) {
 }
 
 function changeClassToSuccess(ele) {
+  if(typeof(ele.prop('tagName')) == "undefined") return;
+  
   if(ele.prop('tagName').toUpperCase() == "INPUT")
     ele = ele.parent("td");
   ele.removeClass("danger");
