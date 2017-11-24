@@ -29,6 +29,7 @@ class Income < ApplicationRecord
   end
 
   def actual_amount_cannot_be_greater_than_income_amount
+    return if income_amount.nil?
     if actual_amount > income_amount
       errors.add(:income_amount, :actual_amount_cannot_be_greater_than_income_amount)
       revenues.each do |r| 
@@ -56,7 +57,6 @@ class Income < ApplicationRecord
     income = Income.new
     income.code = generate_code;
     income.bill_date  = Time.now.to_date
-    income.discount_rate = DISCOUNT_RATE
     income
   end
 
