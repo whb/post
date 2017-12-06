@@ -290,6 +290,11 @@
           changeClassToDanger(income_amount_object);
           changeClassToDanger(cost_amount_object);
           changeClassToDanger($(this));
+        } else {
+          result = true;
+          changeClassToSuccess(income_amount_object);
+          changeClassToSuccess(cost_amount_object);
+          changeClassToSuccess($(this));
         }
       }
     }); 
