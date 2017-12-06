@@ -7,17 +7,32 @@ class Cost < ApplicationRecord
 
   validates :sn, :payee, :income, :invoice_amount, presence: true
   validates_uniqueness_of :sn
+  validate :cost_amount_cannot_be_greater_than_invoice_amount
 
-  before_save do
+  before_validation do
     self.cost_amount = payments.reject{|r| r.marked_for_destruction?}.map(&:amount).compact.sum
     self.cost_date = payments.reject{|r| r.marked_for_destruction?}.map(&:date).compact.max
+  end
 
+  before_save do
     if invoice_amount == cost_amount
       self.status = :paid
     else
       self.status = :active
     end
   end
+
+  def cost_amount_cannot_be_greater_than_invoice_amount
+    return if invoice_amount.nil?
+    if cost_amount > invoice_amount
+      errors.add(:invoice_amount, :cost_amount_cannot_be_greater_than_invoice_amount)
+      payments.each do |r| 
+        r.errors.add(:amount, :cost_amount_cannot_be_greater_than_invoice_amount)
+      end
+    end
+  end
+
+
 
   def self.new_blank(income)
     cost = Cost.new
