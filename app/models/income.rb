@@ -39,7 +39,7 @@ class Income < ApplicationRecord
   end
 
   def self.fee_candidate(range)
-    Income.where(bill_date: range).where.not(id: FeeDetail.select(:income_id))
+    Income.where(invoice_date: range).where.not(id: FeeDetail.select(:income_id))
   end
 
   def self.generate_code
