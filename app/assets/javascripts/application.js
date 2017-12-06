@@ -19,4 +19,6 @@
 //= require bootstrap-datetimepicker
 //= require moment/zh-cn
 // require turbolinks
+//= require select2/select2
+//= require select2/i18n/zh-CN
 //= require_tree .

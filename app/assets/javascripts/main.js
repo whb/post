@@ -140,4 +140,8 @@ $(document).ready(function(){
 
 $(document).on("page:load ready", function(){
     $("div.datepicker").datetimepicker({format: "YYYY-MM-DD", locale: "zh-CN"});
+    $('.js_select2').select2({
+      language: "zh-CN",
+      theme: "bootstrap"
+    });
 });
