@@ -15,7 +15,7 @@
     <%= f.input :sn, readonly: true %>
     <%= f.association :income, label_method: :code, value_method: :id, disabled: true %>
     <input name="cost[income_id]" type="hidden" value="<%= cost.income.id %>">
-    <%= f.association :payee, label_method: :name, value_method: :id %>
+    <%= f.association :payee, label_method: :code_name, value_method: :id, input_html: { class: 'js_select2' } %>
     <%= f.input :abstract %>
     </div>
     <div class="col-md-6">
