@@ -160,6 +160,9 @@ zh-CN:
   Cost was successfully updated: 运输支出更新成功
   Cost was successfully committed: 运输支出提交成功
   Cost was successfully destroyed: 运输支出删除成功
+  Fee was successfully created: 管理费用提取成功
+  Fee was successfully updated: 管理费用更新成功
+  Fee was successfully destroyed: 管理费用删除
   Payer was successfully created: 客户保存成功
   Payer was successfully updated: 客户更新成功
   Payee was successfully created: 承运商保存成功
