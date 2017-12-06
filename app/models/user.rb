@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :password, presence: true, :on => :create
   validates_confirmation_of :password, :on => :create
   
-  ROLES = %w[admin staff manager accounting_clerk financial_officer banned]
+  ROLES = %w[admin staff manager accounting_clerk accounting_assistant financial_officer banned]
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

@@ -4,11 +4,13 @@
     <%= menu_item t(".Home"), root_path %>
     <%= menu_divider %>
 
-    <% if can? :manage, Income %>
+    <% if can? :update, Income %>
     <%= drop_down t(".Income Cost Record") do %>
         <%= menu_item t(".Incomes Record"), incomes_path %>
+        <% if can? :manage, Cost %>
         <%= menu_item t(".Costs Record"), costs_path %>
         <%= menu_item t(".Extract Management Fee"), fees_path %>
+        <% end %>
     <% end %>
     <% end %>
 

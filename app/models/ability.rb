@@ -27,6 +27,11 @@ class Ability
     if user.is? :accounting_clerk
       can :manage, [Income, Cost, Fee, Payee, Payer]
     end
+
+    if user.is? :accounting_assistant
+      can [:read, :query, :create, :update, :destroy], Income 
+      can :manage, [Payee, Payer]
+    end
     # if user.is? :financial_officer
     #   can [:list_verify, :commit, :verify], Cost
     #   can :report, :cost

@@ -4,5 +4,6 @@ zh-CN:
     staff: 普通员工
     manager: 经理
     accounting_clerk: 核结算业务员
+    accounting_assistant: 核结算助理
     financial_officer: 财务审核
     banned: <禁用>
