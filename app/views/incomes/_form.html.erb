@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-6">
     <%= f.input :code, input_html: { spellcheck: 'false' }%>
-    <%= f.association :payer %>
+    <%= f.association :payer, label_method: :code_name %>
     <%= f.input :abstract %>
     <%= f.input :bill_date, as: :datepicker %>
     <%= f.input :account_date, as: :datepicker  %>
