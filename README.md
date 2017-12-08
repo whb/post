@@ -64,4 +64,6 @@ rails generate model payment cost:references date:date 'amount:decimal{10,2}'
 
 rails generate migration AddStatusColumnToIncomes
 rails generate migration AddStatusColumnToCosts
+
+rails generate migration ChangeIncomeExplainColumnToText
 ```

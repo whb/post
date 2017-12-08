@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910115949) do
+ActiveRecord::Schema.define(version: 20171208020708) do
 
   create_table "costs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sn"
@@ -60,17 +60,17 @@ ActiveRecord::Schema.define(version: 20170910115949) do
     t.string   "abstract"
     t.date     "bill_date"
     t.date     "account_date"
-    t.decimal  "income_amount",     precision: 10, scale: 2
-    t.decimal  "settlement_amount", precision: 10, scale: 2
+    t.decimal  "income_amount",                   precision: 10, scale: 2
+    t.decimal  "settlement_amount",               precision: 10, scale: 2
     t.date     "invoice_date"
     t.integer  "invoice_num"
-    t.decimal  "tax_rate",          precision: 2
-    t.string   "explain"
-    t.decimal  "discount_rate",     precision: 2
-    t.decimal  "available_amount",  precision: 10, scale: 2
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.decimal  "actual_amount",     precision: 10, scale: 2
+    t.decimal  "tax_rate",                        precision: 2
+    t.text     "explain",           limit: 65535
+    t.decimal  "discount_rate",                   precision: 2
+    t.decimal  "available_amount",                precision: 10, scale: 2
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.decimal  "actual_amount",                   precision: 10, scale: 2
     t.date     "actual_date"
     t.integer  "status"
     t.index ["code"], name: "index_incomes_on_code", using: :btree
