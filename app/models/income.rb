@@ -1,5 +1,5 @@
 class Income < ApplicationRecord
-  TAX_RATE = {"6%" => 6, "11%" => 11}
+  TAX_RATE = {"6%" => 6, "10%" => 10 , "11%" => 11}
   enum status: [ :active, :revenued, :paid, :archived ]
   belongs_to :payer
   has_many :costs
