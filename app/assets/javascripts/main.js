@@ -91,7 +91,8 @@ function sumAndFormat(amounts) {
     amount = parseCurrency($(this));
     sum += amount;
   });
-  return accounting.format(sum);
+
+  return accounting.formatMoney(sum);
 }
 
 function changeClassToDanger(ele) {
